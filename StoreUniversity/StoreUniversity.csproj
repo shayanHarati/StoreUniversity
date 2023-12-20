@@ -20,4 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StoreUniversity.Context\StoreUniversity.Context.csproj" />
+    <ProjectReference Include="..\StoreUniversity.Core\StoreUniversity.Core.csproj" />
+    <ProjectReference Include="..\StoreUniversityModels\StoreUniversityModels.csproj" />
+  </ItemGroup>
+
 </Project>
