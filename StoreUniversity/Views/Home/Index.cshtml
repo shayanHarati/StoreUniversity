@@ -1,8 +1,88 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section menu{
+    <partial name="menu" />
+}
+<div class="ads">
+    <div class="item-slider">
+        <slider onclick="validate()">
+            <slide></slide>
+            <slide></slide>
+            <slide></slide>
+            <slide></slide>
+        </slider>
+    </div>
+    <div class="item-shop">
+        <span> پیشنهادی </span>
+        <div class="center-shop">
+            <img src="/img/Meghdadit[dot]com.jpg" alt="">
+            <h5> لپ تاپ لنوو 15.6 اینچی مدل ThinkBook 15 پردازنده Core i3 1115G4 رم 8GB حافظه 256GB SSD گرافیک Intel </h5>
+            <s> 15,900,000 تومان</s>
+            <h4> 14,799,000 تومان</h4>
+        </div>
+        <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+    </div>
+    <div class="showpic">
+        <img src="/img/headset.jpg" alt="" class="img1" onclick="validate()">
+        <img src="/img/t-shirt.jpg" alt="" class="img2" onclick="validate()">
+        <img src="/img/pro-whatch.jpg" alt="" class="img3" onclick="validate()">
+    </div>
+</div>
+<div class="top-product">
+    <h3>پرفروش ترین لپ تاپ ها</h3>
+    <hr size="2px" color="red">
+    <div class="best-selling">
+        <div class="selling-item">
+            <span> پیشنهادی </span>
+            <div class="center-shop">
+                <img src="/img/Meghdadit[dot]com.jpg" alt="">
+                <h5> لپ تاپ لنوو 15.6 اینچی مدل Ideapad 3 پردازنده Core i3 1115G4 رم 12GB حافظه 1TB 256GB SSD گرافیک Intel </h5>
+                <s> 17,200,000 تومان</s>
+                <h4> 17,100,000 تومان</h4>
+            </div>
+            <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+        </div>
+    </div>
+    <div class="best-selling-ad">
+        <img src="img/hedset-full.jpg" alt="" onclick="validate()">
+        <img src="img/moble-ok.jpg" alt="" onclick="validate()">
+    </div>
+</div>
+<div class="recent-product">
+    <h3> پرفروش ترین ساعت های هوشمند</h3>
+    <hr size="2px" color="orange">
+    <div class="recent-selling">
+        <div class="selling-item">
+            <span> پیشنهادی </span>
+            <div class="center-shop">
+                <img src="img/1.jpg" alt="">
+                <h5> ساعت هوشمند شیائومی مدل Haylou Solar LS05 </h5>
+                <h4> 1,130,000 تومان</h4>
+            </div>
+            <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+        </div>
+    </div>
+    <div class="our-services">
+        <div class="our-services-child">
+            <img src="/img/darmahal.png" alt="">
+            <span> پرداخت در محل  </span>
+            <span class="dec-services"> تهران </span>
+        </div>
+        <div class="our-services-child">
+            <img src="/img/hamlebar.png" alt="">
+            <span> ارسال به کل کشور </span>
+            <span class="dec-services"> رایگان </span>
+        </div>
+        <div class="our-services-child">
+            <img src="/img/poshtibani.png" alt="">
+            <span> پشتیبانی بر خط</span>
+            <span class="dec-services"> 24 ساعته </span>
+        </div>
+        <div class="our-services-child">
+            <img src="/img/zemanat.png" alt="">
+            <span> ضمانت اصالت کالا </span>
+            <span class="dec-services"> 7 روز ضمانت بازگشت وجه </span>
+        </div>
+    </div>
 </div>
