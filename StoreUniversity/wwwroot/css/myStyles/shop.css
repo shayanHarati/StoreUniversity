@@ -1,0 +1,28 @@
+.shop-home-icon {
+    color: #ef4a23;
+    font-size: 20px;
+}
+.shop-header {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px #d5d5d5;
+    padding: 10px;
+}
+.shop-header select {
+    width: 100px;
+    font-family: iransans;
+    padding: 5px 0px;
+}
+.base-shop-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px #d5d5d5;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(300px , 1fr));
+    grid-gap: 10px;
+}
+.footered {
+        max-width: 1300px;
+        margin: auto;
+}

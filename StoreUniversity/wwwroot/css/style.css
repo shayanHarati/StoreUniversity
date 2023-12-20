@@ -1,0 +1,27 @@
+@import url(/css/reset.css);
+@import url(/css/font.css);
+/* site style */
+
+@import url(/css/myStyles/header.css);
+@import url(/css/myStyles/nav.css);
+@import url(/css/myStyles/topic.css);
+@import url(/css/myStyles/best-selling.css);
+@import url(/css/myStyles/recent-product.css);
+@import url(/css/myStyles/footer.css);
+@import url(/css/myStyles/shop.css);
+@import url(/css/myStyles/blog.css);
+@import url(/css/myStyles/det.css);
+@import url(/css/myStyles/register.css);
+@import url(/css/myStyles/login.css);
+@import url(/css/myStyles/information.css);
+@import url(/css/myStyles/cart.css);
+@import url(/css/myStyles/user.css);
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 20px;
+}
+body {
+    background-color: #f9f9f9 ;
+}

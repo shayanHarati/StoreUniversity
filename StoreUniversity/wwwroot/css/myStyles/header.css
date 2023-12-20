@@ -1,0 +1,103 @@
+.top-header {
+    background-color: #3c3e46;
+    width: 100%;
+    color: #ffffff;
+}
+.topsite{
+    background-color: #3c3e46;
+    width: 100%;
+    color: #ffffff;
+}
+.top-header .header {
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 8fr 1fr 2fr;
+    position: relative;
+    padding: 15px;
+}
+.site-info {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    align-items: center;
+    cursor: pointer;
+}
+.search {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+    margin-left: 5px;
+    width: 300px;
+}
+.search input {
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding-right: 10px;
+}
+.search .top-search {
+    background-color: #ef4a23;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+    display: grid;
+    align-items: center;
+}
+.menu-group {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+    grid-gap: 50px;
+}
+.menu-group img{
+    cursor: pointer;
+}
+.shopimg-cart {
+    background-color: rgb(250, 250, 250);
+    border-radius: 15px;
+    padding: 10px 15px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.account details{
+    direction: ltr;
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    z-index: 2;
+}
+
+.account details div {
+    background-color: #3c3e46;
+    padding:10px 30px;
+    border-radius: 0px 0px 15px 15px;
+}
+.account details div li {
+    margin: 15px 0px;
+}
+.account details div li a{
+    color: #ffffff;
+}
+details > summary {
+    list-style: none;
+}
+@media only screen and ( max-width : 768px) {
+    .top-header .header {
+        grid-template-columns: 4fr 5fr;
+        grid-template-rows: auto auto;
+        grid-row-gap: 10px;
+        padding: 10px;
+    }
+    .search {
+        grid-column: 1 / 4;
+        grid-row: 2/ 3  ;
+        width: 100%;
+    }
+    .account details {
+        top: 12px;
+        left: 10px;
+    }
+    .site-info h1 {
+        font-size: 14px;
+    }
+    .shopimg-cart {
+        font-size: 14px;
+    }
+}

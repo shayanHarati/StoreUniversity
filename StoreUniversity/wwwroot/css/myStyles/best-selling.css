@@ -1,0 +1,80 @@
+.top-product {
+    margin-top: 25px;
+}
+.best-selling {
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(300px , 1fr));
+    grid-gap: 10px;
+    margin-top: 10px;
+    width: 101%;
+}
+.best-selling-ad {
+    display: grid;
+    grid-template-columns: repeat(2 , 50%);
+    grid-gap: 13px;
+    margin-top: 15px;
+}
+.selling-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 20px #cecece;
+}
+.selling-item span {
+    background: #fdefeb;
+    color: #ef603f;
+    display: block;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+}
+.selling-item a {
+    background: #2ecc71;
+    color: #ffffff;
+    display: block;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+}
+
+.center-shop {
+    display: grid;
+    justify-items: center;
+}
+.center-shop img {
+    max-height: 158px;
+    max-height: 159px;
+    padding: 10px;
+}
+.selling-item h5 {
+    text-align: center;
+    font-size: 15px;
+}
+.selling-item s {
+    text-align: center;
+    font-size: 16px;
+    margin: 3px;
+}
+.selling-item h4 {
+    text-align: center;
+    font-size: 22px;
+    color: #ef4a23;
+    margin: 5px 0px 15px;
+}
+
+.best-selling-ad img {
+    width: 98%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media only screen and (max-width : 768px) {
+    .top-product {
+        padding: 10px;
+    }
+    .best-selling-ad {
+        grid-template-columns: 1fr;
+    }
+    .best-selling-ad img {
+        width: 100%;
+    }
+}

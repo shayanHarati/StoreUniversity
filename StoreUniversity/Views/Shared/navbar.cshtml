@@ -1,21 +1,31 @@
-﻿<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StoreUniversity</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+﻿<div class=" top-header">
+    <div class="header">
+        <div class="site-info">
+            <img src="/img/pin.png">
+            <a class="topsite"> <h1> توانمندان فردا </h1> </a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="جست و جو . . . ">
+            <i class=" fa fa-search top-search"></i>
+        </div>
+        <div class="menu-group">
+            <a asp-action="Cart" asp-controller="Store">
+                <div class="shopimg-cart">
+                    <i class="fa fa-shopping-basket"></i>
+                    <span> سبد خرید </span>
+                </div>
+            </a>
+            <div class="account">
+                <details>
+                    <summary>
+                        <img src="/img/user.png">
+                    </summary>
+                    <div>
+                        <li> <a asp-action="Login" asp-controller="Account"> ورود </a> </li>
+                        <li> <a asp-action="Register" asp-controller="Account"> ثبت نام </a> </li>
+                    </div>
+                </details>
             </div>
         </div>
-    </nav>
-</header>
+    </div>
+</div>

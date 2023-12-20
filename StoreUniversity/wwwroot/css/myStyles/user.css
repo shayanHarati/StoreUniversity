@@ -1,0 +1,25 @@
+.user{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px;
+}
+.textname{
+    margin: -20px;
+    background: yellow;
+    border-radius: 10px 10px 50px 50px;
+    height: 75px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+.liuser {
+    margin-top: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 300px;
+    cursor: pointer;
+}

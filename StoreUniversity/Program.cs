@@ -1,11 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
+using StoreUniversity.Services;
+using StoreUniversity.Services.RoleServices;
+using StoreUniversity.Services.UserServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DB>(c=>c.UseSqlServer(builder.Configuration.GetConnectionString("Server")));
+
+builder.Services.AddTransient<IUser, UserService>();
+builder.Services.AddTransient<IUser_Role, User_RoleService>();
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
