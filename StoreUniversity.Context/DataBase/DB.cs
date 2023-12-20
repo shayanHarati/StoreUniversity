@@ -26,6 +26,36 @@ namespace StoreUniversity.Context.DataBase
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Role>().HasData(
+                
+                new Role()
+                {
+                    Id = 100,
+                    Name="Admin"
+                },
+                new Role()
+                {
+                    Id=101,
+                    Name="User"
+                }
+                );
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    Id=100,
+                    UserName="Admin",
+                    Password="Admin",
+                    Email="Admin@gmail.com"
+                }
+                );
+            modelBuilder.Entity<User_Role>().HasData(
+                new User_Role()
+                {
+                    Id=1,
+                    RoleId=100,
+                    UserId=100
+                }
+                );
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
