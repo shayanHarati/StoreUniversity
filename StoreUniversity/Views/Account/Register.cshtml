@@ -1,1 +1,25 @@
 ﻿@model RegisterViewModel
+@section menu {
+    <partial name="menu" />
+}
+<form asp-action="register" asp-controller="account" onsubmit="return register()">
+    <div class="form">
+        <h1> ثبت نام در توانمندان فردا </h1>
+        <hr size="2px" color="gray">
+        <div class="form-child">
+            <input asp-for="UserName" type="text" placeholder=" نام کاربری  " id="username">
+            <span asp-validation-for="UserName"></span>
+            <input asp-for="Email" type="email" placeholder=" ایمیل " id="email">
+            <span asp-validation-for="Email"></span>
+            <input asp-for="Password" type="password" placeholder=" رمز عبور " id="password">
+            <span asp-validation-for="Password"></span>
+            <input asp-for="RePassword" type="password" placeholder=" تکرار رمز عبور " id="passwordrepeat">
+            <span asp-validation-for="RePassword"></span>
+            <button onclick="register()"> ثبت نام </button>
+        </div>
+        <div class="newuser">
+            <span> قبلا در مقداد آی تی ثبت نام کرده اید؟ </span>
+            <a href="login.html" class="newusered"> وارد شوید </a>
+        </div>
+    </div>
+</form>

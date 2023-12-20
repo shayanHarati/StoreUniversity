@@ -1,1 +1,18 @@
 ﻿@model LoginViewModel
+<form asp-action="Login" asp-controller="account" onsubmit="return login()">
+    <div class="form">
+        <h1> ورود به توانمندان فردا </h1>
+        <hr size="2px" color="gray">
+        <div class="form-child">
+            <input asp-for="UserName" type="text" placeholder=" نام کاربری " id="username">
+            <span asp-validation-for="UserName"></span>
+            <input asp-for="Password" type="password" placeholder=" رمز عبور " id="password">
+            <span asp-validation-for="Password"></span>
+            <button onclick="login()"> ورود </button>
+        </div>
+        <div class="newuser">
+            <span> کاربر جدید هستید؟ </span>
+            <a asp-action="register" asp-controller="account" class="newusered">  ثبت نام در توانمندان فردا </a>
+        </div>
+    </div>
+</form>

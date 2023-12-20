@@ -56,6 +56,11 @@ namespace StoreUniversity.Controllers
         [Route("/Login")]
         public IActionResult Login(LoginViewModel vm)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+
             return View();
         }
     }
