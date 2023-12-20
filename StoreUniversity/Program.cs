@@ -1,8 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using StoreUniversity.Context.DataBase;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<DB>(c=>c.UseSqlServer(builder.Configuration.GetConnectionString("Server")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
