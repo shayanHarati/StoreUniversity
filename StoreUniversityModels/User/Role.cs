@@ -7,19 +7,16 @@ using System.Threading.Tasks;
 
 namespace StoreUniversityModels.User
 {
-    public class User
+    public class Role
     {
-        public User()
+        public Role()
         {
             
         }
         public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-
+        public string Name { get; set; }
         #region Relations
-        public List<User_Role>  Roles { get; set; }
+        public virtual List<User_Role> Users { get; set; }
         #endregion
     }
 }
