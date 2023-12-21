@@ -1,6 +1,8 @@
-﻿using StoreUniversity.Context.DataBase;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreUniversity.Context.DataBase;
 using StoreUniversity.DTOs.Account;
 using StoreUniversityModels.User;
+using StoreUniversityModels.User.UserRelations;
 
 namespace StoreUniversity.Services.UserServices
 {
@@ -11,6 +13,14 @@ namespace StoreUniversity.Services.UserServices
         {
             context = _context;
         }
+
+        
+        public User FindUser(string username)
+        {
+
+            return context.Users.Single(c=>c.UserName==username);
+        }
+
         // we know this User is in database
         // username is unique
         public int GetId(string UserName)
@@ -22,6 +32,11 @@ namespace StoreUniversity.Services.UserServices
         public bool IsExistsThisUser(string UserName)
         {
             return context.Users.Any(c => c.UserName==UserName);
+        }
+
+        public bool IsExistsThisUser(string Password, string UserName)
+        {
+            return context.Users.Any(c => c.Password == Password && c.UserName == UserName);
         }
 
         public bool IsExistsThisUserEmail(string Email)
@@ -38,9 +53,18 @@ namespace StoreUniversity.Services.UserServices
                 Password = user.Password,
                 Email = user.Email
             };
+
             context.Users.Add(_user);
             save();
-            return GetId(user.UserName);
+            int id = GetId(user.UserName);
+            User_Role ur = new User_Role()
+            {
+                RoleId = 101,
+                UserId = id
+            };
+            context.UsersTORoles.Add(ur);
+            save();
+            return id;
             
         }
 

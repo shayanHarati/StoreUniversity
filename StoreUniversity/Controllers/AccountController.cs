@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using StoreUniversity.Core;
 using StoreUniversity.DTOs.Account;
 using StoreUniversity.Services.UserServices;
+using System.Security.Claims;
 
 namespace StoreUniversity.Controllers
 {
@@ -60,7 +63,38 @@ namespace StoreUniversity.Controllers
             {
                 return View(vm);
             }
+            if (!user.IsExistsThisUser(vm.Password.Normalize_1d(),vm.UserName.Normalize_1d()))
+            {
+                ModelState.AddModelError("Password","رمز عبور یا نام کاربری درست وارد نشده است");
+                return View(vm);
+            }
+            var user_selected = user.FindUser(vm.UserName);
+            List<Claim> info = new List<Claim>()
+            {
+                new Claim (ClaimTypes.NameIdentifier,user_selected.Id.ToString()),
+                new Claim(ClaimTypes.Name,vm.UserName)
 
+            };
+
+            var identity = new ClaimsIdentity(info, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            var propeties = new AuthenticationProperties()
+            {
+                AllowRefresh = true
+            };
+            HttpContext.SignInAsync(principal, propeties);
+            return Redirect("/panel");
+        }
+        [Route("/logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/");
+        }
+
+        [Route("/panel")]
+        public IActionResult panel()
+        {
             return View();
         }
     }
