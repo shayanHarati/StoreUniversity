@@ -17,6 +17,10 @@ namespace StoreUniversity.Context.Configuration
             builder.Property(c => c.Name).IsRequired();
             builder.Property(c => c.Price).IsRequired();
             builder.Property(c => c.Description).IsRequired(false);
+            builder.HasOne(c => c.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(c => c.CategoryId)
+                .IsRequired();
         }
     }
 }

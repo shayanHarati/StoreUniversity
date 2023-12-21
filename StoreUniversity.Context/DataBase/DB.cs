@@ -22,7 +22,8 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<Role> Roles { get; set; }
         public DbSet<User_Role> UsersTORoles { get; set; }
         public DbSet<Product> Products { get; set; }
-        
+        public DbSet<Category>  Categories { get; set; }
+
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,10 +57,23 @@ namespace StoreUniversity.Context.DataBase
                     UserId=100
                 }
                 );
+            modelBuilder.Entity<Category>().HasData(
+                new Category()
+                {
+                    Id=1,
+                    Name = "لب تاب"
+                },
+                new Category()
+                {
+                    Id=2,
+                    Name="ساعت"
+                }
+                );
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
             modelBuilder.ApplyConfiguration(new User_Role_Config());
+            modelBuilder.ApplyConfiguration(new CategoryConfig());
             base.OnModelCreating(modelBuilder);
         }
     }

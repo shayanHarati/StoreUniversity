@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace StoreUniversityModels.Product
 {
-    public class Product
+    public class Category
     {
-        public Product()
+        public Category()
         {
-
+            
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Price { get; set; }
-        #region Relations
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+
+        #region relations
+        public virtual List<Product> Products { get; set; }
         #endregion
     }
 }
