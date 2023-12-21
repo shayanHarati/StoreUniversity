@@ -1,21 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreUniversity.Models;
+using StoreUniversity.Services.ProductServices;
+using StoreUniversityModels.Product;
 using System.Diagnostics;
 
 namespace StoreUniversity.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private Iproduct product;
+        public HomeController(Iproduct _prod)
         {
-            _logger = logger;
+            product = _prod;
         }
         [Route("/")]
         public IActionResult Index()
         {
-            return View();
+            
+            return View(product.GetTopProducts());
         }
 
         public IActionResult call()

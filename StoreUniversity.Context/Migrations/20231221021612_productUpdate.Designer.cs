@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreUniversity.Context.DataBase;
 
@@ -10,9 +11,11 @@ using StoreUniversity.Context.DataBase;
 namespace StoreUniversity.Context.Migrations
 {
     [DbContext(typeof(DB))]
-    partial class DBModelSnapshot : ModelSnapshot
+    [Migration("20231221021612_productUpdate")]
+    partial class productUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,22 +53,6 @@ namespace StoreUniversity.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("StoreUniversityModels.Product.Offcode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Percent")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Offcodes");
-                });
-
             modelBuilder.Entity("StoreUniversityModels.Product.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -80,9 +67,6 @@ namespace StoreUniversity.Context.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -90,37 +74,11 @@ namespace StoreUniversity.Context.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("SellRate")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("StoreUniversityModels.Product.ProductsTOOffcodes", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("OffCodeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("OffCodeId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsTOOffcodes");
                 });
 
             modelBuilder.Entity("StoreUniversityModels.User.Role", b =>
@@ -228,25 +186,6 @@ namespace StoreUniversity.Context.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("StoreUniversityModels.Product.ProductsTOOffcodes", b =>
-                {
-                    b.HasOne("StoreUniversityModels.Product.Offcode", "Offcode")
-                        .WithMany("Products")
-                        .HasForeignKey("OffCodeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("StoreUniversityModels.Product.Product", "Product")
-                        .WithMany("Offcodes")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Offcode");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("StoreUniversityModels.User.UserRelations.User_Role", b =>
                 {
                     b.HasOne("StoreUniversityModels.User.Role", "Role")
@@ -269,16 +208,6 @@ namespace StoreUniversity.Context.Migrations
             modelBuilder.Entity("StoreUniversityModels.Product.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("StoreUniversityModels.Product.Offcode", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("StoreUniversityModels.Product.Product", b =>
-                {
-                    b.Navigation("Offcodes");
                 });
 
             modelBuilder.Entity("StoreUniversityModels.User.Role", b =>

@@ -1,9 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    
 }
+@model List<StoreViewModel>
 @section menu{
     <partial name="menu" />
 }
+
+
 <div class="ads">
     <div class="item-slider">
         <slider onclick="validate()">
@@ -29,7 +33,40 @@
         <img src="/img/pro-whatch.jpg" alt="" class="img3" onclick="validate()">
     </div>
 </div>
-<div class="top-product">
+
+@foreach (var item in Model.DistinctBy(c=>c.CategoryName))
+{
+    <div class="top-product">
+        <h3>پرفروش ترین  @item.CategoryName ها</h3>
+        <hr size="2px" color="red">
+         <div class="best-selling">
+            @foreach (var best in item.Top)
+            {
+                if (best.Category.Name == item.CategoryName)
+                {
+                    <div class="selling-item">
+                        <span> پیشنهادی </span>
+                        <div class="center-shop">
+                            <img src="/img/@best.Image" alt="">
+                            <h5>@best.Name</h5>
+                            <s> @best.Price تومان</s>
+                            <h4> 17,100,000 تومان</h4>
+                        </div>
+                        <a asp-action="Details" asp-controller="store" asp-route-id=@best.Id asp-route-cat="@best.Category.Name"> برای خرید کلیک کنید </a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="best-selling-ad">
+            <img src="/img/hedset-full.jpg" alt="" onclick="validate()">
+            <img src="/img/moble-ok.jpg" alt="" onclick="validate()">
+        </div>
+       
+    </div>
+}
+
+
+@* <div class="top-product">
     <h3>پرفروش ترین لپ تاپ ها</h3>
     <hr size="2px" color="red">
     <div class="best-selling">
@@ -64,4 +101,4 @@
         </div>
     </div>
    <partial name="OurServices" />
-</div>
+</div> *@

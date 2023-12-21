@@ -23,6 +23,8 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<User_Role> UsersTORoles { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category>  Categories { get; set; }
+        public DbSet<Offcode> Offcodes { get; set; }
+        public DbSet<ProductsTOOffcodes>  ProductsTOOffcodes { get; set; }
 
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -74,6 +76,9 @@ namespace StoreUniversity.Context.DataBase
             modelBuilder.ApplyConfiguration(new RoleConfig());
             modelBuilder.ApplyConfiguration(new User_Role_Config());
             modelBuilder.ApplyConfiguration(new CategoryConfig());
+            modelBuilder.ApplyConfiguration(new OffCodeConfig());
+            modelBuilder.ApplyConfiguration(new ProductsTOOffcodesConfig());
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
 using StoreUniversity.Services;
+using StoreUniversity.Services.ProductServices;
 using StoreUniversity.Services.RoleServices;
 using StoreUniversity.Services.UserServices;
 
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<DB>(c=>c.UseSqlServer(builder.Configuration.GetCon
 
 builder.Services.AddTransient<IUser, UserService>();
 builder.Services.AddTransient<IUser_Role, User_RoleService>();
+builder.Services.AddTransient<Iproduct, ProductService>();
+
 
 
 builder.Services.AddAuthentication(options =>
