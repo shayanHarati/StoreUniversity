@@ -38,17 +38,23 @@ namespace StoreUniversity.Controllers
         {
            
             var p=product.GetproductById(Id);
-            var off = 0;
-            if (p.Offcodes!=null)
+            int off = 0;
+            if (p.Offcodes[0].Offcode != null)
             {
-                 off= p.Offcodes.Max().Offcode.Percent;
+                off = p.Offcodes[0].Offcode.Percent;
+            }
+
+            if(p.Description == null)
+            {
+                p.Description = "";
             }
             DetailsViewModel vm = new DetailsViewModel()
             {
                 Price = p.Price,
-                percent =off,
+                percent = off,
                 ProductName = p.Name,
-                product_Image = p.Image
+                product_Image = p.Image,
+                Description=p.Description,
             };
             return View(vm);
         }

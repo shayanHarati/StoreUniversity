@@ -18,5 +18,6 @@ namespace StoreUniversity.DTOs.Store
 
         [Display(Name = "توضیحات")]
         public string Description { get; set; }
+        
     }
 }

@@ -42,8 +42,16 @@
                 <div class="center-shop">
                     <img src="/img/@item.Image" alt="">
                     <h5> @item.Name </h5>
-                    <s> @item.Price تومان</s>
-                    <h4> 17,100,000 تومان</h4>
+                    @if (item.Offcodes[0].Offcode != null)
+                    {
+                        <s> @item.Price تومان</s>
+                        <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Offcodes[0].Offcode.Percent)) تومان</h4>
+                    }
+                    else
+                    {
+                        <h4> @item.Price تومان</h4>
+                        
+                    }
                 </div>
                 <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.Category.Name"> برای خرید کلیک کنید </a>
             </div>

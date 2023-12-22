@@ -20,12 +20,12 @@
     <div class="item-shop">
         <span> پیشنهادی </span>
         <div class="center-shop">
-            <img src="/img/Meghdadit[dot]com.jpg" alt="">
-            <h5> لپ تاپ لنوو 15.6 اینچی مدل ThinkBook 15 پردازنده Core i3 1115G4 رم 8GB حافظه 256GB SSD گرافیک Intel </h5>
-            <s> 15,900,000 تومان</s>
-            <h4> 14,799,000 تومان</h4>
+            <img src="/img/@Model[0].Best.Image" alt="">
+            <h5> @Model[0].Best.Name</h5>
+            <s> @Model[0].Best.Price تومان</s>
+            <h4>  @Money.formatMoney(ApplyOff.Calculate(Model[0].Best.Price, Model[0].Best.Offcodes[0].Offcode.Percent)) تومان</h4>
         </div>
-        <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+        <a asp-action="Details" asp-controller="store" asp-route-id=@Model[0].Best.Id asp-route-cat="Model[0].Best.Category.Name"> برای خرید کلیک کنید </a>
     </div>
     <div class="showpic">
         <img src="/img/headset.jpg" alt="" class="img1" onclick="validate()">
@@ -49,15 +49,18 @@
                         <div class="center-shop">
                             <img src="/img/@best.Image" alt="">
                             <h5>@best.Name</h5>
-                            <s> @best.Price تومان</s>
-                            @if (@best.Offcodes[0].Offcode != null)
+                            
+                            @if (best.Offcodes[0].Offcode != null)
                             {
-                                <h4> @best.Offcodes[0].Offcode.Percent تومان</h4>
+                                <s> @best.Price تومان</s>
+                                <h4> @Money.formatMoney(ApplyOff.Calculate(best.Price, best.Offcodes[0].Offcode.Percent))تومان</h4>
                             }
                             else
                             {
-                                <h4> 0 تومان</h4>
+                                <h4> @best.Price تومان</h4>
                             }
+
+                            
 
                         </div>
                         <a asp-action="Details" asp-controller="store" asp-route-id=@best.Id asp-route-cat="@best.Category.Name"> برای خرید کلیک کنید </a>

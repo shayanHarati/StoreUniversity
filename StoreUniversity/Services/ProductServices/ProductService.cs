@@ -30,9 +30,25 @@ namespace StoreUniversity.Services.ProductServices
             return prod;
         }
 
+        public Product GetbestProduct()
+        {
+            int max_sell=0;
+            max_sell = context.Products.Select(c => c.SellRate).Max();
+            return context.Products.Where(c => c.SellRate == max_sell).ToList()[0];
+        }
+
         public Product GetproductById(int id)
         {
-           return context.Products.Single(c => c.Id == id);
+            var off = context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Where(c => c.ProductId == id).ToList().Select(c => c.Offcode).MaxBy(c => c.Percent);
+            var p=context.Products.Include(c=>c.Offcodes).Single(c => c.Id == id);
+            p.Offcodes.Clear();
+            ProductsTOOffcodes vm = new ProductsTOOffcodes()
+            {
+                Offcode = off,
+                Product = p
+            };
+            p.Offcodes.Add(vm);
+            return p;
         }
 
         public List<IndexProductsViewModel> GetTopProducts()
@@ -49,7 +65,8 @@ namespace StoreUniversity.Services.ProductServices
                     IndexProductsViewModel sv = new IndexProductsViewModel()
                     {
                         CategoryName = item.Category.Name,
-                        Top = products.Where(c => c.SellRate == max_rate).ToList()
+                        Top = products.Where(c => c.SellRate == max_rate).ToList(),
+                        Best=GetbestProduct()
                         
                     };
                     vm.Add(sv);
