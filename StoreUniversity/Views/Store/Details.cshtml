@@ -1,7 +1,214 @@
-﻿@model ProductCartViewModel
+﻿@model DetailsViewModel
 
 
-<img src="/img/@Model.product_Image" />
-<p>@Model.ProductName</p>
-<p>@Model.Price</p>
-<p>@Model.percent</p>
+
+
+<div class="shop-det">
+    <div class="det-header">
+        <i class="fa fa-home"></i>
+        <a asp-controller="home" asp-action="index"> خانه </a><span> > </span> <a asp-controller="Store" asp-action="show" > محصولات </a>
+        <hr size="2px" color="gray">
+    </div>
+    <div class="base-det-product">
+        <div class="product-img" id="zoom">
+            <img src="/img/@Model.product_Image" id="zoom1">
+        </div>
+        <div class="other-img" id="wallchanger">
+            <img src="/img/product1/Meghdadit[dot]com.jpg" alt="">
+            <img src="/img/product1/djrsiuzw0f73dd62lft03h13rmmgef1b5vria87usavqto8fcn[large].jpg" alt="">
+            <img src="/img/product1/jmvy318lbv74aokc71smvmejvpru5p2vpqfm7k48kofl8uet4f[large].jpg" alt="">
+            <img src="/img/product1/k5dcw7b802fvxbu77bchygpkqah5x4ljrq3e0ihym2iflifabm[large].jpg" alt="">
+        </div>
+        <div class="more-det">
+            <h1> @Model.ProductName </h1>
+            <hr size="2px" color="gray">
+            <div class="full-det">
+                <div class="off-discount">
+                    <s> @Model.Price  </s>
+                    <span> 15,741,000 </span>
+                    <h1> 1% </h1>
+                </div>
+                <div class="select-opt">
+                    <select>
+                        <option> - - - - - </option>
+                        <option> 18 ماه گارانتی </option>
+                        <option> 3 ماه گارانتی تعویض</option>
+                    </select>
+                    <select>
+                        <option> - - - - - </option>
+                        <option> آبی </option>
+                        <option> مشکی </option>
+                    </select>
+                </div>
+                <div class="fast-information">
+                    <p> رم : 8 گیگ </p>
+                    <p> حافظه : 256 گیگ </p>
+                    <p> گرافیک : اینتل </p>
+                </div>
+                <br>
+                <div class="set-product-button">
+                    <span class="add-to-list">
+                        <i class="fa fa-heart"></i>
+                        افزودن به علاقه مندی
+                    </span>
+                    <span class="product-sells">
+                        <i class="fa fa-shopping-cart"></i>
+                        افزودن به سبد خرید
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="suggested-product">
+        <p>
+            @Model.Description    </p>
+        <div class="suggested-product-advice">
+            <h1> محصولات پیشنهادی </h1>
+            <div class="suggested-product-advice-child">
+                <div class="selling-item">
+                    <span> پیشنهادی </span>
+                    <div class="center-shop">
+                        <img src="../img/product2/1.jpg" alt="">
+                        <h5> لپ تاپ لنوو 15.6 اینچی مدل Ideapad 3 پردازنده Core i3 1115G4 رم 12GB حافظه 1TB 256GB SSD گرافیک Intel </h5>
+                        <s> 17,200,000 تومان</s>
+                        <h4> 17,100,000 تومان</h4>
+                    </div>
+                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+                </div>
+                <div class="selling-item">
+                    <span> پیشنهادی </span>
+                    <div class="center-shop">
+                        <img src="../img/product3/1.jpg" alt="">
+                        <h5> لپ تاپ لنوو 15.6 اینچی مدل Ideapad Gaming 3 پردازنده Core i5-11300H رم 16GB حافظه 1TB 256GB SSD گرافیک 4GB  </h5>
+                        <s> 34,900,000 تومان</s>
+                        <h4> 34,400,000 تومان</h4>
+                    </div>
+                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+                </div>
+                <div class="selling-item">
+                    <span> پیشنهادی </span>
+                    <div class="center-shop">
+                        <img src="../img/product4/1.png" alt="">
+                        <h5> لپ تاپ ایسوس 15.6 اینچی مدل X515EP پردازنده Core i5 1135G7 رم 16GB حافظه 512GB SSD گرافیک 2GB </h5>
+                        <s> 28,199,000 تومان</s>
+                        <h4> 28,000,000 تومان</h4>
+                    </div>
+                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+                </div>
+                <div class="selling-item">
+                    <span> پیشنهادی </span>
+                    <div class="center-shop">
+                        <img src="../img/product5/1.jpg" alt="">
+                        <h5> MacBook Air اپل 13 اینچ مدل MGN63 2020 پردازنده M1 رم 8GB حافظه 256GB SSD کارتن اصلی</h5>
+                        <s> 29,400,000 تومان</s>
+                        <h4> 29,300,000 تومان</h4>
+                    </div>
+                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="more-information">
+        <button id="default" class="tab-btn active" onclick="tabs(event,'html')">  نقد و بررسی </button>
+        <button id="tab-btn" class="tab-btn" onclick="tabs(event,'css')"> مشخصات </button>
+        <button id="tab-btn" class="tab-btn" onclick="tabs(event,'javascript')"> نظرات </button>
+        <div class="content">
+            <div id="html" class="tab-content">
+                <div class="object">
+                    <p>
+                        استفاده از لپ تاپ برای هر قشر از کاربران لازم و ضروری است و به هر فعالیت مرتبط با کسب و کار یا سرگرمی که بپردازید، می‌توانید از یک لپ تاپ برای پیشبرد آسان کارهای خود استفاده کنید. لنوو به‌عنوان یکی از بهترین تولید کنندگان لپ تاپ در سراسر جهان، محصولی را روانه بازار کرده است که همراه با قیمتی مناسب، می‌تواند برای کاربری‌های متنوع عالی باشد. لپ تاپ مدل ThinkBook 15 این کمپانی همراه با یک طراحی زیبا روانه بازار شده و مقاومت خوبی هم در برابر شرایط مختلف دارد. این لپ تاپ از نظر طراحی می‌تواند ارگونومی مناسبی را برای‌تان به همراه داشته باشد.
+
+                        دیگر برندها: قیمت لپ تاپ ایسوس
+
+                        این لپ تاپ با ابعاد ۳۶۴ در ۲۴۵ در ۱۸.۹ میلی‌متری روانه بازار شده و تقریبا ۱.۷ کیلوگرم هم وزن دارد. دستگاه از نوع نوت بوک بوده و با یک صفحه نمایش ۱۵.۶ اینچی در اختیار شما قرار می‌گیرد. رزولوشن این صفحه نمایش در حد ۱۹۲۰ در ۱۰۸۰ پیکسل بوده و از نوع مات بوده است. این صفحه نمایش قابلیت لمسی ندارد و در این رده قیمت انتظاری هم از آن نداریم. اگر نگاهی به پردازنده لپ تاپ بیندازیم، کمپانی اینتل سازنده آن بوده و از سری Core i3 انتخاب شده است. مدل پردازنده هم به‌صورت دقیق i3-1115G4 نوان شده است. فرکانس این پردازنده ۳.۰ گیگاهرتز بوده و در حالت توربو می‌تواند به حد ۴.۱ گیگاهرتز برسد.
+
+                        حافظه کش پردازنده هم در حد ۶ مگابایت است. این محصول از یک حافظه رم ۸ گیگابایتی استفاده می‌کند که نوع آن هم DDR4 بوده و استاندارد لازم را برای فراهم کردن سرعت کافی برای کامپیوتر شما فراهم می‌کند. ظرفیت حافظه داخلی در حد ۲۵۶ گیگابایت بوده و از نوع SSD در لپ تاپ تعبیه شده است. این حافظه‌ سرعت بسیار بالاتری نسبت به یک حافظه معمولی دارد، اما بهتر است که از آن برای نصب ویندوز و نرم افزارهای خود استفاده کرده و داده‌های خود را معمولا در یک حافظه اکسترنال ذخیره سازی کنید. چرا که لپ تاپ حافظه چندان مناسبی برای این نوع داده‌ها به همراه ندارد.
+
+                        دیگر برندها: قیمت لپ تاپ اچ پی
+                        مشخصات فنی دیگر
+
+                        لپ تاپ مدل ThinkBook 15 کمپانی لنوو از کارت گرافیک Intel UHD Graphics بهره برده و گزینه جداگانه‌ای ندارد. این کارت گرافیک صرفا برای انجام کارهای ساده در لپ تاپ کافی به نظر می‌رسد. درایو نوری طبق انتظار از این لپ تاپ حذف شده و دو پورت USB 3.0 در کنار دو پورت USB-C در لپ تاپ مشاهده می‌کنیم. این لپ تاپ دارای پورت HDMI بوده و در کنار آن یک پورت شبکه هم می‌بینیم اتصال وای فای در این لپ تاپ در کنار اتصال بلوتوث همراه با فناوری برتر فراهم شده است و علاقه‌مندان می‌توانند به بهترین شکل ممکن اتصال به اینترنت را در کنار اتصال دستگاه‌های جانبی دیگر داشته باشند.
+
+                        کارت خوان هم در این لپ تاپ به درستی تعبیه شده است و می‌توانید از جک هدفون ۳.۵ میلی‌متری برای اتصال هدفون هم استفاده کنید. از امکانات دیگر می‌توانیم به حسگر اثر انگشتی اشاره کنیم که در کنار وب کم می‌تواند یک راهکار بیومتریک عالی برای انجام کارهای متخلف در لپ تاپ باشد. از وب کم می‌توانید برای تماس تصویری استفاده کرده و همچنین ضبط ویدیوهای مربوط به محتواهای خودتان را نیز انجام دهید. لپ تاپ مجهز به یک اسپیکر داخلی بوده و صدای استریو را با کیفیتی بسیار بالا در اختیار شما می‌گذارد. سلول‌های باتری در این لپ تاپ هم سه تایی بوده و می‌توانید مدت زمان طولانی در بیرون از منزل یا دانشگاه از آن بهره ببرید.
+
+                        دیگر برندها: قیمت لپ تاپ دل
+
+                        طبق انتظار، این لپ تاپ لنوو از فرمان چند لمسی هم در ترک پد پشتیبانی می‌کند. از مزایای دیگر دستگاه می‌توانیم به کیفیت ساخت عالی آن اشاره کنیم که استفاده طولانی مدت از لپ تاپ را در سال‌های متمادی امکان پذیر می‌کند. شارژدهی باتری بسیار زیاد بوده و برای لپ تاپی که قطعات چندان پیشرفته‌ای هم برای مصرف بیشتر باتری ندارد، می‌توانیم بیشتر امیدوار باشیم. کیبورد همراه با ترک پوینت دارای عملکردی سریع و عالی بوده و هر نوع کار اداری و دانشگاهی را در کنار تسک‌های خانگی می‌توانید انجام دهید. قیمت مناسب این لپ تاپ ارزش خرید آن را بالا برده و کاملا می‌توانید روی یک دستگاه همه کاره روی آن حساب کنید.
+                        لزوم استفاده از لپ تاپ
+
+                        لپ تاپ حتی در خانه هم برای مرور در اینترنت در کنار گشت و گذار در شبکه‌های اجتماعی مورد نیاز است و می‌تواند استفاده‌های متعدد داشته باشد. برای کسب دانش و همچنین مرور فیلم‌های یوتیوب برای مقاصد مختلف می‌توانید از لپ تاپ بهترین استفاده را ببرید. یک دانشجو هم از همان سال ابتدایی برای مرور پروژه‌های خود در زمینه برنامه نویسی، استفاده از برنامه‌های مختلف و موارد دیگر به یک لپ تاپ نیاز خواهد داشت و بنابراین، با یک سرمایه گذاری خوب روی یک لپ تاپ، می‌توانید به مزایای جالب توجهی از این دستگاه‌ها دسترسی پیدا کنید.
+                    </p>
+
+                    </p>
+                </div>
+            </div>
+            <div id="css" class="tab-content">
+                <div class="object focus-information">
+                    <span class="title"> مشخصات فیزیکی : </span><br>
+                    <div class="focus-information-child">
+                        <span> ابعاد بدون پایه : </span>
+                        <span> وزن با پایه : </span>
+                        <span> وزن بدون پایه : </span>
+                    </div>
+                    <div class="focus-information-child">
+                        <span>489.5*391.6*183 میلیمتر </span>
+                        <span> 3.7 کیلوگرم </span>
+                        <span> 2.9 کیلوگرم </span>
+                    </div>
+                    <span class="title"> صفحه نمایش : </span><br>
+                    <div class="focus-information-child">
+                        <span> سایز : </span>
+                        <span>نوع صفحه نمایش : </span>
+                        <span>کیفیت صفحه نمایش : </span>
+                        <span>کنتراست : </span>
+                        <span>دقت تصویر - رزولوشن : </span>
+                        <span>نسبت کنتراست متغیر (DCR) : </span>
+                        <span>نسبت تصویر : </span>
+                        <span>سیستم نور پس زمینه : </span>
+                        <span>شدت روشنایی : </span>
+                        <span>زمان پاسخگویی : </span>
+                        <span>تعداد رنگ قابل نمایش : </span>
+                        <span>زاویه دید افقی Horizontal : </span>
+                        <span>
+                            زاویه دید عمودی Vertical
+                            :
+                        </span>
+                    </div>
+                    <div class="focus-information-child">
+                        <span>21.5 اینچ </span>
+                        <span> IPS </span>
+                        <span>FULL HD </span>
+                        <span>1: 1.000 </span>
+                        <span>1080 * 1920 </span>
+                        <span>20.000.000:1 </span>
+                        <span>16:9 </span>
+                        <span>LED Backlight </span>
+                        <span>
+                            250cd/m2
+                        </span>
+                        <span>5 میلی ثانیه </span>
+                        <span>16.7 میلیون رنگ </span>
+                        <span>178 درجه </span>
+                        <span>178 درجه </span>
+                    </div>
+                    <span class="title"> سایر مشخصات : </span><br>
+                    <div class="focus-information-child">
+                        <span> بلندگوی پخش صدا : </span>
+                    </div>
+                    <div class="focus-information-child">
+                        <span> دو بلندگو استریو 1وات</span>
+                    </div>
+                </div>
+            </div>
+            <div id="javascript" class="tab-content">
+                <div class="object comment">
+                    <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                    <input type="text" placeholder="نام شما ">
+                    <input type="email" placeholder="ایمیل">
+                    <input type="number" min="1" max="5" value="5">
+                    <button> ارسال نظر </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,11 @@ namespace StoreUniversity.Services.ProductServices
             context = _context;
         }
 
+        public List<Product> GetAllProducts()
+        {
+            return context.Products.Include(c=>c.Category).ToList();
+        }
+
         public Product GetproductById(int id)
         {
            return context.Products.Single(c => c.Id == id);
@@ -21,7 +26,7 @@ namespace StoreUniversity.Services.ProductServices
         public List<StoreViewModel> GetTopProducts()
         {
             List<StoreViewModel> vm = new List<StoreViewModel>();
-            var products = context.Products.Include(c => c.Category).ToList();
+            var products = GetAllProducts();
             foreach (var item in products)
             {
                 var category = item.Category.Id;

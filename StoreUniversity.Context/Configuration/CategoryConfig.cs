@@ -15,6 +15,7 @@ namespace StoreUniversity.Context.Configuration
         {
             builder.HasKey(c=>c.Id);
             builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.IsInsoon).IsRequired();
         }
     }
 }

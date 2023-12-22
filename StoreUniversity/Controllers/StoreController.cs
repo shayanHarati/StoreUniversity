@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreUniversity.DTOs.Store;
+using StoreUniversity.Services.CategoryServices;
 using StoreUniversity.Services.ProductServices;
 using StoreUniversityModels.Product;
 
@@ -9,13 +10,25 @@ namespace StoreUniversity.Controllers
     {
         
         private Iproduct product;
-        public StoreController(Iproduct _product)
+        private ICategory Category;
+        public StoreController(Iproduct _product,ICategory _category)
         {
             product = _product;
+            Category = _category;
         }
-        public IActionResult Show()
+        public IActionResult Show(string _Category)
         {
-            return View();
+            ShowViewModel vm = new ShowViewModel();
+            
+            
+            vm.Products= product.GetAllProducts();
+            vm.Categories = Category.GetAllCategories();
+            if (_Category == null)
+            {
+                _Category = vm.Categories[0].Name;
+            }
+            vm.SelectedCategory = _Category;
+            return View(vm);
         }
         public IActionResult Cart()
         {
@@ -30,7 +43,7 @@ namespace StoreUniversity.Controllers
             {
                  off= p.Offcodes.Max().Offcode.Percent;
             }
-            ProductCartViewModel vm = new ProductCartViewModel()
+            DetailsViewModel vm = new DetailsViewModel()
             {
                 Price = p.Price,
                 percent =off,

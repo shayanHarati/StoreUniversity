@@ -1,3 +1,52 @@
 ﻿@section menu {
     <partial name="menu" />
 }
+@model ShowViewModel
+ <div class="shop-header">
+        <i class="fa fa-home shop-home-icon"></i>
+    <a asp-controller="home"  asp-action="index"> خانه </a> <span> > </span> <a asp-controller="store" asp-action="show"> فروشگاه </a> <span> > </span> <a asp-action="show" asp-controller="Store" asp-route-_Category="@Model.SelectedCategory"> @Model.SelectedCategory </a>
+        <hr size="2px" color="gray">
+        <nav class="desktop-menu">
+            @foreach (var item in Model.Categories)
+        {
+            if (item.IsInsoon)
+            {
+                <li class="nav-li-un-selected nav-li-hovered"><a href="#" style="color: tomato;"> @item.Name (بزودی) </a></li>
+               
+            }
+            else
+            {
+                if (Model.SelectedCategory == item.Name)
+                {
+                    <li class="nav-li-selected"><a asp-action="show" asp-controller="Store" asp-route-_Category="@item.Name"> @item.Name </a></li>
+                }
+                else
+                {
+                    <li class="nav-li-un-selected nav-li-hovered"><a asp-action="show" asp-controller="Store" asp-route-_Category="@item.Name">  @item.Name </a></li>
+                }
+
+            }
+
+        }
+           
+        </nav>
+    </div>
+    <br>
+    <div class="base-shop-content">
+           @foreach (var item in Model.Products)
+    {
+        @if (item.Category.Name == Model.SelectedCategory)
+        {
+            <div class="selling-item">
+                <span> پیشنهادی </span>
+                <div class="center-shop">
+                    <img src="/img/@item.Image" alt="">
+                    <h5> @item.Name </h5>
+                    <s> @item.Price تومان</s>
+                    <h4> 17,100,000 تومان</h4>
+                </div>
+                <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.Category.Name"> برای خرید کلیک کنید </a>
+            </div>
+        }
+    }
+    </div>

@@ -2,7 +2,7 @@
 
 namespace StoreUniversity.DTOs.Store
 {
-    public class ProductCartViewModel
+    public class DetailsViewModel
     {
         [Display(Name = "تصویر محصول")]
         public string product_Image { get; set; }
@@ -15,5 +15,8 @@ namespace StoreUniversity.DTOs.Store
         [Display(Name = "کد تخفیف")]
         [Required(ErrorMessage = "لطفا {0} را وارد  کنید")]
         public int percent { get; set; }
+
+        [Display(Name = "توضیحات")]
+        public string Description { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace StoreUniversityModels.Product
         }
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsInsoon { get; set; }
 
         #region relations
         public virtual List<Product> Products { get; set; }

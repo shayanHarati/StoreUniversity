@@ -15,6 +15,8 @@ namespace StoreUniversity.Context.Configuration
         {
             builder.HasKey(c=>c.Id);
             builder.Property(c => c.Percent).IsRequired();
+            builder.Property(c => c.Name).IsRequired();
+
         }
     }
 }
