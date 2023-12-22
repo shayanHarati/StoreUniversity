@@ -15,7 +15,19 @@ namespace StoreUniversity.Services.ProductServices
 
         public List<Product> GetAllProducts()
         {
-            return context.Products.Include(c=>c.Category).ToList();
+            var prod= context.Products.Include(c=>c.Category).Include(c=>c.Offcodes).ToList();
+            foreach (var item in prod)
+            {
+                var off = context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Where(c => c.ProductId == item.Id).ToList().Select(c=>c.Offcode).MaxBy(c => c.Percent);
+                ProductsTOOffcodes vm = new ProductsTOOffcodes()
+                {
+                    Offcode = off,
+                    Product=item
+                };
+                item.Offcodes.Clear();
+                item.Offcodes.Add(vm);
+            }
+            return prod;
         }
 
         public Product GetproductById(int id)
@@ -23,9 +35,9 @@ namespace StoreUniversity.Services.ProductServices
            return context.Products.Single(c => c.Id == id);
         }
 
-        public List<StoreViewModel> GetTopProducts()
+        public List<IndexProductsViewModel> GetTopProducts()
         {
-            List<StoreViewModel> vm = new List<StoreViewModel>();
+            List<IndexProductsViewModel> vm = new List<IndexProductsViewModel>();
             var products = GetAllProducts();
             foreach (var item in products)
             {
@@ -34,10 +46,11 @@ namespace StoreUniversity.Services.ProductServices
                 int max_rate = sellrates.Max();
                if (item.SellRate == max_rate)
                 {
-                    StoreViewModel sv = new StoreViewModel()
+                    IndexProductsViewModel sv = new IndexProductsViewModel()
                     {
                         CategoryName = item.Category.Name,
                         Top = products.Where(c => c.SellRate == max_rate).ToList()
+                        
                     };
                     vm.Add(sv);
                 }

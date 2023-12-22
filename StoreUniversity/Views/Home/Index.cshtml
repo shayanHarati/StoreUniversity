@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
     
 }
-@model List<StoreViewModel>
+@model List<IndexProductsViewModel>
 @section menu{
     <partial name="menu" />
 }
@@ -50,7 +50,15 @@
                             <img src="/img/@best.Image" alt="">
                             <h5>@best.Name</h5>
                             <s> @best.Price تومان</s>
-                            <h4> 17,100,000 تومان</h4>
+                            @if (@best.Offcodes[0].Offcode != null)
+                            {
+                                <h4> @best.Offcodes[0].Offcode.Percent تومان</h4>
+                            }
+                            else
+                            {
+                                <h4> 0 تومان</h4>
+                            }
+
                         </div>
                         <a asp-action="Details" asp-controller="store" asp-route-id=@best.Id asp-route-cat="@best.Category.Name"> برای خرید کلیک کنید </a>
                     </div>

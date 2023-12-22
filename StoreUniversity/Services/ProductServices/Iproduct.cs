@@ -5,7 +5,7 @@ namespace StoreUniversity.Services.ProductServices
 {
     public interface Iproduct
     {
-        List<StoreViewModel> GetTopProducts();
+        List<IndexProductsViewModel> GetTopProducts();
         List<Product> GetAllProducts();
         Product GetproductById(int id);
     }
