@@ -23,3 +23,28 @@
     height: 300px;
     cursor: pointer;
 }
+.active {
+    border-bottom: #ef4a23 solid 5px;
+    color: #000000;
+    transition: all ease-in-out 0.3s;
+}
+.inputuser {
+    border-radius: 10px;
+    border: 2px solid #888888;
+    text-align: center;
+    font-size: 20px;
+}
+#uploadpic {
+    border: none;
+    border-radius: 0px;
+}
+.imguser {
+    padding: 10px;
+}
+.submitchange {
+    margin-top: 30px;
+    width: 100px;
+    margin-right: 50%;
+    cursor: pointer;
+    height: 40px;
+}

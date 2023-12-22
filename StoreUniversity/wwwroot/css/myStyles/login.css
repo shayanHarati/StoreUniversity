@@ -46,7 +46,6 @@
 }
 #userror {
     content: "";
-    display: none;
     color: red;
 }
 #passerror {

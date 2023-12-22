@@ -1,21 +1,21 @@
-@import url(/css/reset.css);
-@import url(/css/font.css);
+@import url(reset.css);
+@import url(font.css);
 /* site style */
 
-@import url(/css/myStyles/header.css);
-@import url(/css/myStyles/nav.css);
-@import url(/css/myStyles/topic.css);
-@import url(/css/myStyles/best-selling.css);
-@import url(/css/myStyles/recent-product.css);
-@import url(/css/myStyles/footer.css);
-@import url(/css/myStyles/shop.css);
-@import url(/css/myStyles/blog.css);
-@import url(/css/myStyles/det.css);
-@import url(/css/myStyles/register.css);
-@import url(/css/myStyles/login.css);
-@import url(/css/myStyles/information.css);
-@import url(/css/myStyles/cart.css);
-@import url(/css/myStyles/user.css);
+@import url(myStyles/header.css);
+@import url(myStyles/nav.css);
+@import url(myStyles/topic.css);
+@import url(myStyles/best-selling.css);
+@import url(myStyles/recent-product.css);
+@import url(myStyles/footer.css);
+@import url(myStyles/shop.css);
+@import url(myStyles/blog.css);
+@import url(myStyles/det.css);
+@import url(myStyles/register.css);
+@import url(myStyles/login.css);
+@import url(myStyles/information.css);
+@import url(myStyles/cart.css);
+@import url(myStyles/user.css);
 
 .container {
     max-width: 1300px;

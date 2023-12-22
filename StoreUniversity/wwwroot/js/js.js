@@ -16,30 +16,24 @@ function validateshop() {
 function validateshopwatch() {
     window.open("file:///D:/site/project/pages/shopwatch.html","_self")
 }
+function validateexit() {
+    window.open("file:///D:/site/project/index.html","_self")
+}
 function login() {
     const username = document.getElementById('username')
     const password = document.getElementById('password')
-    const userror = document.getElementById('userror')
-    const passerror = document.getElementById('passerror')
 
     if(username.value.trim() === ''){
-        username.style.border='3px solid red'
-        userror.style.display='block';
-        userror.innerText = "یوزرنیم را وارد کنید"
+        username.classList.add('attention')
         return false
     }
     else if(password.value.trim() === ''){
-        password.style.border='3px solid red'
-        passerror.style.display='visible';
-        userror.style.display='none';
-        username.style.border='1px solid black'
-        passerror.innerText = "پسورد را وارد کنید"
+        username.classList.replace('attention','attentiontrue')
+        password.classList.add('attention')
         return false
     }
     else if(password.value.trim().length<=5){
-        passerror.style.display='visible';
-        passerror.innerText = "  پسورد کوتاه است  "
-        password.style.border='3px solid red'
+        password.classList.add('attention')
         return false
     }
     else{
@@ -47,67 +41,36 @@ function login() {
     }
 }
 function register() {
-    const username = document.getElementById('username')
-    const email = document.getElementById('email')
-    const password = document.getElementById('password')
-    const pass = document.getElementById('password').value
-    const passwordrepeat = document.getElementById('passwordrepeat')
-    const passrepeat = document.getElementById('passwordrepeat').value
-    const userror = document.getElementById('userror')
-    const emailrror = document.getElementById('emailrror')
-    const passerror = document.getElementById('passerror')
-    const passrepeatrror = document.getElementById('passrepeatrror')
-
-    if(username.value.trim() === ''){
-        username.style.border='3px solid red'
-        userror.style.display='block';
-        userror.innerText = "یوزرنیم را وارد کنید"
-        return false
-    }
-    else if(email.value.trim() === ''){
-        email.style.border='3px solid red'
-        emailrror.style.display='visible';
-        userror.style.display='none';
-        username.style.border='1px solid black'
-        emailrror.innerText = "ایمیل را وارد کنید"
-        return false
-    }
-    else if(password.value.trim() === ''){
-        password.style.border='3px solid red'
-        passerror.style.display='visible';
-        emailrror.style.display='none';
-        email.style.border='1px solid black'
-        passerror.innerText = "پسورد را وارد کنید"
-        return false
-    }
-    else if(password.value.trim().length<=5){
-        passerror.style.display='visible';
-        passerror.innerText = "  پسورد کوتاه است  "
-        password.style.border='3px solid red'
-        return false
-    }
-    else if(passwordrepeat.value.trim() === ''){
-        passwordrepeat.style.border='3px solid red'
-        passrepeatrror.style.display='visible';
-        passerror.style.display='none';
-        password.style.border='1px solid black'
-        passrepeatrror.innerText = "پسورد را وارد کنید"
-        return false
-    }
-    else if(passrepeat != pass){
-        console.log("true")
-        passrepeatrror.style.display='visible';
-        passrepeatrror.innerText = " پسورد یکسان نیست "
-        passwordrepeat.style.border='3px solid red'
-        return false
-    }
-    else{
-        return true
-    }
+    let formgp = document.getElementsByClassName('formgp')
+    console.log(formgp)
+    formgp.forEach(e => {
+        const forgpspan = e.childNodes[1]
+        const forgpinput = e.childNodes[0]
+        console.log(forgpspan)
+        if(forgpspan.innerText != ""){
+            forgpinput.classList.add('attention')
+            return false
+        }
+        else{
+            return true
+        }
+    })
 }
-
 function tabs(e,name) {
     var tab_btn = document.getElementsByClassName('tab-btn');
+    var tab_content = document.getElementsByClassName('tab-content');
+    var i ;
+    for (i = 0 ; i < tab_btn.length ; i++) {
+        tab_btn[i].classList.remove('active');
+    }
+    for (i = 0 ; i < tab_content.length ; i++) {
+        tab_content[i].style.display = 'none';
+    }
+    document.getElementById(name).style.display = 'block' ;
+    e.currentTarget.classList.add('active');
+}
+function tabss(e,name) {
+    var tab_btn = document.getElementsByClassName('tabbtn');
     var tab_content = document.getElementsByClassName('tab-content');
     var i ;
     for (i = 0 ; i < tab_btn.length ; i++) {
@@ -133,7 +96,7 @@ window.onload = function() {
         img.style.transform = 'scale(1)'
     })
 }
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
     let wallchanger = document.getElementById('wallchanger')
     let wallselect = document.getElementById('zoom1')
     wallchanger.childNodes.forEach(element => {
