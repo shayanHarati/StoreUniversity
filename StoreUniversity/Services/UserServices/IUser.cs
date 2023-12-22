@@ -11,6 +11,8 @@ namespace StoreUniversity.Services.UserServices
         bool IsExistsThisUser(string Password,string UserName);
         User FindUser(string username);
         int RegisterUser( RegisterViewModel user);
+        User GetUserById(int id);
+        void UpdateUser(User _user);
 
         void save();
     }

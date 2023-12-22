@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
+using StoreUniversity.Core;
 using StoreUniversity.DTOs.Account;
 using StoreUniversityModels.User;
 using StoreUniversityModels.User.UserRelations;
@@ -17,7 +18,7 @@ namespace StoreUniversity.Services.UserServices
         
         public User FindUser(string username)
         {
-
+            username=Fix.Normalize_1d(username);
             return context.Users.Single(c=>c.UserName==username);
         }
 
@@ -26,6 +27,11 @@ namespace StoreUniversity.Services.UserServices
         public int GetId(string UserName)
         {
             return context.Users.Single(c=>c.UserName == UserName).Id;
+        }
+
+        public User GetUserById(int id)
+        {
+            return context.Users.Single(c => c.Id == id);
         }
 
         // username is unique
@@ -71,6 +77,12 @@ namespace StoreUniversity.Services.UserServices
         public void save()
         {
             context.SaveChanges();
+        }
+
+        public void UpdateUser(User _user)
+        {
+            context.Users.Update(_user);
+            save();
         }
     }
 }

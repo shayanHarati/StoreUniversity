@@ -1,5 +1,83 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model PanelViewModel
+
+<div class="shop-header textinfo">
+    <div class="textname">
+        <img src="/img/user.png" class="imguser">
+
+        <p class="textuser"><strong> سلام @User.Identity.Name عزیز ! </strong></p>
+    </div>
+    <ul class="liuser">
+        <li><button id="default" class="tabbtn active" onclick="tabss(event,'pishkhan')">پیشخوان</button>  </li>
+        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'virayesh')"> ویرایش اطلاعات </button></li>
+        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'sefaresh')"> سفارش ها </button> </li>
+        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'download')">  محصولات خریداری شده </button></li>
+        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'alaghemandi')"> علاقه مندی ها </button></li>
+        <li><a asp-action="Logout" asp-controller="Account"  class="tabbtn" > خروج </a></li>
+    </ul>
+</div>
+<div class="shop-header textinfo">
+    <div class="content">
+        <div id="pishkhan" class="tab-content">
+            <div class="object">
+                <div>
+                    <span><b>نام کاربری : </b></span>
+                    <span>
+                        @Model.User.UserName
+                    </span>
+                </div>
+                <div>
+                    <span><b>ایمیل : </b></span>
+                    <span>
+                        @Model.User.Email
+                    </span>
+                </div>
+               
+
+            </div>
+        </div>
+        <div id="virayesh" class="tab-content" style="display:none;">
+            <form asp-action="EditInfo" asp-controller="Account">
+                <div class="object focus-information">
+                    <input asp-for="User.Id" type="hidden" value="@Model.User.Id" />
+                    <p> نام کاربری : </p>
+                    <input asp-for="User.UserName" value="@Model.User.UserName" class="inputuser" type="text">
+                    <p> رمز ورود : </p>
+                    <input asp-for="User.Password" value="@Model.User.Password" class="inputuser" type="password">
+                    <p> عکس : </p>
+                    <input class="inputuser" type="file" accept=".jpg, .jpeg, .png" id="uploadpic">
+                    <p> ایمیل : </p>
+                    <input asp-for="User.Email" class="inputuser" value="@Model.User.Email" type="email">
+
+                </div>
+                <button class="inputuser submitchange"> تایید </button>
+            </form>
+        </div>
+        <div id="sefaresh" class="tab-content" style="display:none;">
+            <div class="object comment">
+                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                <input type="text" placeholder="نام شما ">
+                <input type="email" placeholder="ایمیل">
+                <input type="number" min="1" max="5" value="5">
+                <button> ارسال نظر </button>
+            </div>
+        </div>
+        <div id="download" class="tab-content" style="display:none;">
+            <div class="object comment">
+                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                <input type="text" placeholder="نام شما ">
+                <input type="email" placeholder="ایمیل">
+                <input type="number" min="1" max="5" value="5">
+                <button> ارسال نظر </button>
+            </div>
+        </div>
+        <div id="alaghemandi" class="tab-content" style="display:none;">
+            <div class="object comment">
+                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                <input type="text" placeholder="نام شما ">
+                <input type="email" placeholder="ایمیل">
+                <input type="number" min="1" max="5" value="5">
+                <button> ارسال نظر </button>
+            </div>
+        </div>
+    </div>
+</div>

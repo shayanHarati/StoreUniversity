@@ -5,6 +5,7 @@ using StoreUniversity.Core;
 using StoreUniversity.DTOs.Account;
 using StoreUniversity.Services.UserServices;
 using System.Security.Claims;
+using StoreUniversityModels.User;
 
 namespace StoreUniversity.Controllers
 {
@@ -83,7 +84,9 @@ namespace StoreUniversity.Controllers
                 AllowRefresh = true
             };
             HttpContext.SignInAsync(principal, propeties);
-            return Redirect("/panel");
+            PanelViewModel ee = new PanelViewModel();
+            ee.User = user.FindUser(vm.UserName);
+            return View("panel",ee);
         }
         [Route("/logout")]
         public IActionResult Logout()
@@ -93,9 +96,27 @@ namespace StoreUniversity.Controllers
         }
 
         [Route("/panel")]
-        public IActionResult panel()
+        public IActionResult panel(string Username)
         {
-            return View();
+            PanelViewModel vm = new PanelViewModel();
+            vm.User = user.FindUser(Username);
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult EditInfo(PanelViewModel _user)
+        {
+            User us = new User()
+            {
+                UserName = _user.User.UserName,
+                Email = _user.User.Email,
+                Password = _user.User.Password,
+                Id = _user.User.Id
+            };
+            user.UpdateUser(us);
+
+            PanelViewModel ee = new PanelViewModel();
+            ee.User = user.FindUser(us.UserName);
+            return View("panel", ee);
         }
     }
 }

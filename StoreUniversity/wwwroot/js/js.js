@@ -96,7 +96,7 @@ window.onload = function() {
         img.style.transform = 'scale(1)'
     })
 }
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (e) => {
     let wallchanger = document.getElementById('wallchanger')
     let wallselect = document.getElementById('zoom1')
     wallchanger.childNodes.forEach(element => {

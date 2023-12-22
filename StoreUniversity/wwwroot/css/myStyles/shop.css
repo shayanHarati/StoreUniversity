@@ -26,3 +26,12 @@
         max-width: 1300px;
         margin: auto;
 }
+@media only screen and ( max-width : 600px) {
+    
+    .shopdet {
+        display: grid;
+        grid-template-columns: 15% 25% 25%;
+        grid-gap: 15px;
+        align-items: center;
+    }
+}

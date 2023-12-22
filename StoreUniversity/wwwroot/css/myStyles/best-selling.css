@@ -19,6 +19,8 @@
     border-radius: 10px;
     padding: 10px;
     box-shadow: 2px 2px 20px #cecece;
+    display: grid;
+    grid-template-rows: 12% 77% auto;
 }
 .selling-item span {
     background: #fdefeb;

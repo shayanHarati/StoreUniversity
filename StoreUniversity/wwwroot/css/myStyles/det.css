@@ -210,9 +210,10 @@
         opacity: 1;
     }
 }
-.focus-information {
+
+.focus-information div{
     display: grid;
-    grid-template-columns: 13% 32% 13% 32%;
+    grid-template-columns: 25% 75%;
     grid-gap: 25px;
 }
 .focus-information-child span {
@@ -315,5 +316,8 @@
     }
     .comment button {
         grid-column: unset;
+    }
+    .product-img img{
+        transform: scale(1) !important;
     }
 }

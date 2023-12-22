@@ -21,6 +21,8 @@
     border-radius: 8px;
     transition: all ease-in-out 0.3s;
     margin-top: 5px;
+    display: block;
+    width: 93%;
 }
 .form input:focus {
     background-color: #fff;

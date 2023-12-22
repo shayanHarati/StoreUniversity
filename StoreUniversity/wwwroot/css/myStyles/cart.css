@@ -34,3 +34,41 @@
     font-size: 25px;
     text-align: center;
 }
+@media only screen and (max-width : 1250px) and ( min-width : 1000px){
+    .cart {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width : 1000px) and ( min-width : 768px){
+    .cart {
+        grid-template-columns: 63% 36%;
+        font-size: 13px;
+    }
+    .peyment {
+        padding: 5px;
+        width: 70%;
+        background-color: #fecf08;
+        font-size: 15px;
+        border-radius: 25px;
+        margin: auto;
+    }
+}
+@media only screen and (max-width : 768px) {
+    .cart {
+        display: grid;
+        grid-template-areas:
+            "item1 item1"
+            "item2 item3";
+        grid-gap: 10px;
+        grid-template-columns: 50% 50%;
+        font-size: 13px;
+    }
+    .peyment {
+        padding: 5px;
+        width: 70%;
+        background-color: #fecf08;
+        font-size: 15px;
+        border-radius: 25px;
+        margin: auto;
+    }
+}
