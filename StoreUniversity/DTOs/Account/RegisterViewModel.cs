@@ -9,6 +9,7 @@ namespace StoreUniversity.DTOs.Account
         public string UserName { get; set; }
         [Display(Name = "رمز عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد  کنید")]
+        [MinLength(8,ErrorMessage ="حداقل طول {0} باید برابر {1} باشد ")]
         public string Password { get; set; }
         [Display(Name = "تکرار رمز عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد  کنید")]
