@@ -40,11 +40,20 @@
                 <div class="object focus-information">
                     <input asp-for="User.Id" type="hidden" value="@Model.User.Id" />
                     <p> نام کاربری : </p>
-                    <input asp-for="User.UserName" value="@Model.User.UserName" class="inputuser" type="text">
+                    <p class="inputuser">@Model.User.UserName</p>
                     <p> رمز ورود : </p>
                     <input asp-for="User.Password" value="@Model.User.Password" class="inputuser" type="password">
-                    <p> عکس : </p>
-                    <input class="inputuser" type="file" accept=".jpg, .jpeg, .png" id="uploadpic">
+                    <div style="display:flex">
+                        <div style="padding:1rem;">
+                            <img src="/img/@Model.User.Image" width="100px"/>
+                            <br />
+                            <p> عکس : </p>
+                            <input class="inputuser" type="file" accept=".jpg, .jpeg, .png" id="uploadpic">
+                       
+                        </div>
+                        
+                            
+                    </div>
                     <p> ایمیل : </p>
                     <input asp-for="User.Email" class="inputuser" value="@Model.User.Email" type="email">
 

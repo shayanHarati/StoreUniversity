@@ -17,6 +17,7 @@ namespace StoreUniversity.Context.Configuration
             builder.Property(c=>c.UserName).IsRequired();
             builder.Property(c => c.Password).IsRequired();
             builder.Property(c => c.Email).IsRequired();
+            builder.Property(c => c.Image).IsRequired();
         }
     }
 }

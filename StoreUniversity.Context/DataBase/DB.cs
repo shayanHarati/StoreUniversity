@@ -35,6 +35,7 @@ namespace StoreUniversity.Context.DataBase
                 {
                     Id = 100,
                     Name="Admin"
+
                 },
                 new Role()
                 {
@@ -48,7 +49,8 @@ namespace StoreUniversity.Context.DataBase
                     Id=100,
                     UserName="Admin",
                     Password="Admin",
-                    Email="Admin@gmail.com"
+                    Email="Admin@gmail.com",
+                    Image= "user.png"
                 }
                 );
             modelBuilder.Entity<User_Role>().HasData(

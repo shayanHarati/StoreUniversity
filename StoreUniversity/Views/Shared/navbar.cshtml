@@ -24,7 +24,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>@User.Identity.Name</li>
-                            <li> <a asp-action="panel" asp-controller="Account"> پنل کاربری </a> </li>
+                            <li> <a asp-action="panel" asp-controller="Account" asp-route-Username="@User.Identity.Name"> پنل کاربری </a> </li>
                             <li> <a asp-action="Logout" asp-controller="Account"> خروج از حساب کاربری  </a> </li>
                         }
                         else

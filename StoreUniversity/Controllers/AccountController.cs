@@ -84,9 +84,8 @@ namespace StoreUniversity.Controllers
                 AllowRefresh = true
             };
             HttpContext.SignInAsync(principal, propeties);
-            PanelViewModel ee = new PanelViewModel();
-            ee.User = user.FindUser(vm.UserName);
-            return View("panel",ee);
+
+            return Redirect("/");
         }
         [Route("/logout")]
         public IActionResult Logout()
@@ -116,7 +115,7 @@ namespace StoreUniversity.Controllers
 
             PanelViewModel ee = new PanelViewModel();
             ee.User = user.FindUser(us.UserName);
-            return View("panel", ee);
+            return RedirectToAction("panel", ee);
         }
     }
 }

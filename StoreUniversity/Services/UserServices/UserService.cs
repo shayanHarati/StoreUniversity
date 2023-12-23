@@ -57,7 +57,9 @@ namespace StoreUniversity.Services.UserServices
             {
                 UserName = user.UserName,
                 Password = user.Password,
-                Email = user.Email
+                Email = user.Email,
+                Image= "user.png"
+
             };
 
             context.Users.Add(_user);
