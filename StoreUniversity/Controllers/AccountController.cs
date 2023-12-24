@@ -7,7 +7,8 @@ using StoreUniversity.Services.UserServices;
 using System.Security.Claims;
 using StoreUniversityModels.User;
 using Microsoft.EntityFrameworkCore.Storage;
-
+using Microsoft.AspNetCore.Http.HttpResults;
+using System.IO;
 namespace StoreUniversity.Controllers
 {
     public class AccountController : Controller
@@ -98,12 +99,21 @@ namespace StoreUniversity.Controllers
         [Route("/panel")]
         public IActionResult panel(string Username)
         {
-            PanelViewModel vm = new PanelViewModel();
-            vm.User = user.FindUser(Username);
-            return View(vm);
+            var us = user.FindUser(Username);
+
+            EditPanelViewModel nm = new EditPanelViewModel()
+            {
+                UserName = us.UserName,
+                Password = us.Password,
+                Email = us.Email,
+                ImageName=us.Image,
+                Id = us.Id
+            };
+            
+            return View(nm);
         }
         [HttpPost]
-        public IActionResult EditInfo(PanelViewModel _user)
+        public IActionResult EditInfo(EditPanelViewModel _user)
         {
             if (!ModelState.IsValid)
             {
@@ -111,31 +121,44 @@ namespace StoreUniversity.Controllers
             }
             User us = new User()
             {
-                UserName = _user.User.UserName,
-                Email = _user.User.Email,
-                Password = _user.User.Password,
-                Id = _user.User.Id
+                UserName = _user.UserName,
+                Email = _user.Email,
+                Password = _user.Password,
+                Id = _user.Id
 
             };
-            if (_user.User.Image != null)
+            if (_user.ImageFile != null)
             {
-                if(_user.User.Image != "user.png")
+                
+                if(_user.ImageName != "user.png")
                 {
-
+                    string deletepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Users", _user.ImageName);
+                    if (System.IO.File.Exists(deletepath))
+                    {
+                        System.IO.File.Delete(deletepath);
+                    }
                 }
-                us.Image = _user.User.UserName + Path.GetExtension(_user.User.Image);
-                string image_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Users");
-                //using(var stream = new FileStream(image_path, FileMode.Create))
-                //{
-                //    _user.User.Image.CopyTo(stream);
-                //}
+                us.Image = _user.UserName + Path.GetExtension(_user.ImageFile.FileName);
+                string image_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Users",us.Image);
+                using (var stream = new FileStream(image_path, FileMode.Create))
+                {
+                     _user.ImageFile.CopyTo(stream);
+                }
+
+
             }
            
             user.UpdateUser(us);
 
-            PanelViewModel ee = new PanelViewModel();
-            ee.User = us;
-            return RedirectToAction("panel", ee);
+            EditPanelViewModel ee = new EditPanelViewModel()
+            {
+                UserName = us.UserName,
+                Password = us.Password,
+                Email = us.Email,
+                ImageName = _user.ImageName,
+                Id=us.Id
+            };
+            return RedirectToAction("Logout", ee);
         }
     }
 }

@@ -26,4 +26,8 @@
     <ProjectReference Include="..\StoreUniversityModels\StoreUniversityModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\Users\" />
+  </ItemGroup>
+
 </Project>

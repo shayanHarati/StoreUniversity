@@ -18,7 +18,13 @@
             <div class="account">
                 <details>
                     <summary>
-                        <img src="/img/user.png">
+                        @if(User.Identity.IsAuthenticated){
+                            @User.Identity.Name
+                        }
+                        else
+                        {
+                            <img src="/img/user.png">
+                        }
                     </summary>
                     <div>
                         @if (User.Identity.IsAuthenticated)

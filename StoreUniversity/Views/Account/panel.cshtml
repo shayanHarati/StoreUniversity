@@ -1,8 +1,8 @@
-﻿@model PanelViewModel
+﻿@model EditPanelViewModel
 
 <div class="shop-header textinfo">
     <div class="textname">
-        <img src="/img/user.png" class="imguser">
+        <img src="/img/users/@Model.ImageName" class="imguser">
 
         <p class="textuser"><strong> سلام @User.Identity.Name عزیز ! </strong></p>
     </div>
@@ -22,13 +22,13 @@
                 <div>
                     <span><b>نام کاربری : </b></span>
                     <span>
-                        @Model.User.UserName
+                        @Model.UserName
                     </span>
                 </div>
                 <div>
                     <span><b>ایمیل : </b></span>
                     <span>
-                        @Model.User.Email
+                        @Model.Email
                     </span>
                 </div>
                
@@ -36,27 +36,23 @@
             </div>
         </div>
         <div id="virayesh" class="tab-content" style="display:none;">
-            <form asp-action="EditInfo" asp-controller="Account">
+            <form asp-action="EditInfo" asp-controller="Account" method="post"  enctype="multipart/form-data">
                 <div class="object focus-information">
-                    <input asp-for="User.Id" type="hidden" value="@Model.User.Id" />
+                    <input asp-for="Id" type="hidden" value="@Model.Id" />
                     <p> نام کاربری : </p>
-                    <p class="inputuser">@Model.User.UserName</p>
+                    <input type="text" asp-for="UserName" class="inputuser" value="@Model.UserName" />
                     <p> رمز ورود : </p>
-                    <input asp-for="User.Password" value="@Model.User.Password" class="inputuser" type="password">
-                    <div style="display:flex">
-                        <div style="padding:1rem;">
-                            <p> عکس : </p>
-                            <input class="inputuser" type="file" accept=".jpg, .jpeg, .png" id="uploadpic">
-                       
-                        </div>
-                        
-                            
-                    </div>
+                    <input asp-for="Password" value="@Model.Password" class="inputuser" type="password">
+                    <p> عکس : </p>
+                    @* class="inputuser" id="uploadpic"*@
+                    <input asp-for="ImageFile" type="file" accept=".jpg, .jpeg, .png">
+                    <span asp-validation-for="ImageFile"></span>
+                    <input type="hidden" asp-for="ImageName" />
                     <p> ایمیل : </p>
-                    <input asp-for="User.Email" class="inputuser" value="@Model.User.Email" type="email">
+                    <input asp-for="Email" class="inputuser" value="@Model.Email" type="email">
 
                 </div>
-                <button class="inputuser submitchange"> تایید </button>
+                <button type="submit" class="inputuser submitchange" asp-action="EditInfo" asp-controller="Account"> تایید </button>
             </form>
         </div>
         <div id="sefaresh" class="tab-content" style="display:none;">
