@@ -3,6 +3,7 @@ using StoreUniversity.Context.Configuration;
 using StoreUniversityModels.Product;
 using StoreUniversityModels.User;
 using StoreUniversityModels.User.UserRelations;
+using StoreUniversityModels.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<Category>  Categories { get; set; }
         public DbSet<Offcode> Offcodes { get; set; }
         public DbSet<ProductsTOOffcodes>  ProductsTOOffcodes { get; set; }
+
+
+        public DbSet<Wallet>  Wallets { get; set; }
+        public DbSet<WalletType> WalletTypes { get; set; }
 
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
