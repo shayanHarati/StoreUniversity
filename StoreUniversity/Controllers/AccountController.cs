@@ -6,6 +6,7 @@ using StoreUniversity.DTOs.Account;
 using StoreUniversity.Services.UserServices;
 using System.Security.Claims;
 using StoreUniversityModels.User;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace StoreUniversity.Controllers
 {
@@ -104,17 +105,36 @@ namespace StoreUniversity.Controllers
         [HttpPost]
         public IActionResult EditInfo(PanelViewModel _user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("panel", _user);
+            }
             User us = new User()
             {
                 UserName = _user.User.UserName,
                 Email = _user.User.Email,
                 Password = _user.User.Password,
                 Id = _user.User.Id
+
             };
+            if (_user.User.Image != null)
+            {
+                if(_user.User.Image != "user.png")
+                {
+
+                }
+                us.Image = _user.User.UserName + Path.GetExtension(_user.User.Image);
+                string image_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Users");
+                //using(var stream = new FileStream(image_path, FileMode.Create))
+                //{
+                //    _user.User.Image.CopyTo(stream);
+                //}
+            }
+           
             user.UpdateUser(us);
 
             PanelViewModel ee = new PanelViewModel();
-            ee.User = user.FindUser(us.UserName);
+            ee.User = us;
             return RedirectToAction("panel", ee);
         }
     }
