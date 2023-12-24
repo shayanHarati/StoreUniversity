@@ -12,7 +12,10 @@
                     <div class="selling-item">
                         <span> پیشنهادی </span>
                         <div class="center-shop">
-                            <img src="/img/@best.Image" alt="">
+                            @if (best.images.Count>0)
+                            {
+                                <img src="/img/@best.images[0].ImageName" alt="">
+                            } 
                             <h5>@best.Name</h5>
 
                             @if (best.Offcodes[0].Offcode != null)

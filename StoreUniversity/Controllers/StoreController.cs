@@ -48,12 +48,17 @@ namespace StoreUniversity.Controllers
             {
                 p.Description = "";
             }
+            List<string> images = new List<string>();
+            foreach (var item in p.images)
+            {
+                images.Add(item.ImageName);
+            }
             DetailsViewModel vm = new DetailsViewModel()
             {
                 Price = p.Price,
                 percent = off,
                 ProductName = p.Name,
-                product_Image = p.Image,
+                product_Image = images ,
                 Description=p.Description,
                 tops= product.GetTopProducts()
             };

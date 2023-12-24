@@ -10,15 +10,21 @@
         <hr size="2px" color="gray">
     </div>
     <div class="base-det-product">
-        <div class="product-img" id="zoom">
-            <img src="/img/@Model.product_Image" id="zoom1">
-        </div>
+        @if (Model.product_Image.Count>0)
+        {
+            <div class="product-img" id="zoom">
+                <img src="/img/@Model.product_Image[0]" id="zoom1">
+            </div>
+        }
         <div class="other-img" id="wallchanger">
-            <img src="/img/product1/Meghdadit[dot]com.jpg" alt="">
-            <img src="/img/product1/djrsiuzw0f73dd62lft03h13rmmgef1b5vria87usavqto8fcn[large].jpg" alt="">
-            <img src="/img/product1/jmvy318lbv74aokc71smvmejvpru5p2vpqfm7k48kofl8uet4f[large].jpg" alt="">
-            <img src="/img/product1/k5dcw7b802fvxbu77bchygpkqah5x4ljrq3e0ihym2iflifabm[large].jpg" alt="">
-        </div>
+            @if (Model.product_Image.Count>1)
+            {
+                @for (int i = 0; i < Model.product_Image.Count; i++)
+                {
+                    <img src="/img/@Model.product_Image[i]" alt="">
+                }
+            }
+         </div>
         <div class="more-det">
             <h1> @Model.ProductName </h1>
             <hr size="2px" color="gray">

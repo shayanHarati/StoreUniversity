@@ -15,7 +15,7 @@ namespace StoreUniversity.Services.ProductServices
 
         public List<Product> GetAllProducts()
         {
-            var prod= context.Products.Include(c=>c.Category).Include(c=>c.Offcodes).ToList();
+            var prod= context.Products.Include(c=>c.Category).Include(c=>c.images).Include(c=>c.Offcodes).ToList();
             foreach (var item in prod)
             {
                 var off = context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Where(c => c.ProductId == item.Id).ToList().Select(c=>c.Offcode).MaxBy(c => c.Percent);
@@ -34,13 +34,13 @@ namespace StoreUniversity.Services.ProductServices
         {
             int max_sell=0;
             max_sell = context.Products.Select(c => c.SellRate).Max();
-            return context.Products.Where(c => c.SellRate == max_sell).ToList()[0];
+            return context.Products.Include(c=>c.images).Where(c => c.SellRate == max_sell).ToList()[0];
         }
 
         public Product GetproductById(int id)
         {
             var off = context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Where(c => c.ProductId == id).ToList().Select(c => c.Offcode).MaxBy(c => c.Percent);
-            var p=context.Products.Include(c=>c.Offcodes).Single(c => c.Id == id);
+            var p=context.Products.Include(c=>c.images).Include(c=>c.Offcodes).Single(c => c.Id == id);
             p.Offcodes.Clear();
             ProductsTOOffcodes vm = new ProductsTOOffcodes()
             {

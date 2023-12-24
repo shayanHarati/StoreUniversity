@@ -80,6 +80,7 @@ namespace StoreUniversity.Context.DataBase
             modelBuilder.ApplyConfiguration(new CategoryConfig());
             modelBuilder.ApplyConfiguration(new OffCodeConfig());
             modelBuilder.ApplyConfiguration(new ProductsTOOffcodesConfig());
+            modelBuilder.ApplyConfiguration(new ProductImageConfig());
 
             base.OnModelCreating(modelBuilder);
         }

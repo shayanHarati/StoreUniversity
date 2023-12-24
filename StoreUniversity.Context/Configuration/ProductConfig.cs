@@ -21,7 +21,7 @@ namespace StoreUniversity.Context.Configuration
                 .WithMany(c => c.Products)
                 .HasForeignKey(c => c.CategoryId)
                 .IsRequired();
-            builder.Property(c => c.Image).IsRequired(false);
+            
 
         }
     }

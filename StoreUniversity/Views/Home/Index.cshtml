@@ -20,7 +20,10 @@
     <div class="item-shop">
         <span> پیشنهادی </span>
         <div class="center-shop">
-            <img src="/img/@Model[0].Best.Image" alt="">
+            @if (Model[0].Best.images.Count>0)
+            {
+                <img src="/img/@Model[0].Best.images[0].ImageName" alt="">
+            }
             <h5> @Model[0].Best.Name</h5>
             <s> @Model[0].Best.Price تومان</s>
             <h4>  @Money.formatMoney(ApplyOff.Calculate(Model[0].Best.Price, Model[0].Best.Offcodes[0].Offcode.Percent)) تومان</h4>
