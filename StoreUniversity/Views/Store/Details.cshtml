@@ -62,51 +62,7 @@
     <div class="suggested-product">
         <p>
             @Model.Description    </p>
-        <div class="suggested-product-advice">
-            <h1> محصولات پیشنهادی </h1>
-            <div class="suggested-product-advice-child">
-                <div class="selling-item">
-                    <span> پیشنهادی </span>
-                    <div class="center-shop">
-                        <img src="../img/product2/1.jpg" alt="">
-                        <h5> لپ تاپ لنوو 15.6 اینچی مدل Ideapad 3 پردازنده Core i3 1115G4 رم 12GB حافظه 1TB 256GB SSD گرافیک Intel </h5>
-                        <s> 17,200,000 تومان</s>
-                        <h4> 17,100,000 تومان</h4>
-                    </div>
-                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
-                </div>
-                <div class="selling-item">
-                    <span> پیشنهادی </span>
-                    <div class="center-shop">
-                        <img src="../img/product3/1.jpg" alt="">
-                        <h5> لپ تاپ لنوو 15.6 اینچی مدل Ideapad Gaming 3 پردازنده Core i5-11300H رم 16GB حافظه 1TB 256GB SSD گرافیک 4GB  </h5>
-                        <s> 34,900,000 تومان</s>
-                        <h4> 34,400,000 تومان</h4>
-                    </div>
-                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
-                </div>
-                <div class="selling-item">
-                    <span> پیشنهادی </span>
-                    <div class="center-shop">
-                        <img src="../img/product4/1.png" alt="">
-                        <h5> لپ تاپ ایسوس 15.6 اینچی مدل X515EP پردازنده Core i5 1135G7 رم 16GB حافظه 512GB SSD گرافیک 2GB </h5>
-                        <s> 28,199,000 تومان</s>
-                        <h4> 28,000,000 تومان</h4>
-                    </div>
-                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
-                </div>
-                <div class="selling-item">
-                    <span> پیشنهادی </span>
-                    <div class="center-shop">
-                        <img src="../img/product5/1.jpg" alt="">
-                        <h5> MacBook Air اپل 13 اینچ مدل MGN63 2020 پردازنده M1 رم 8GB حافظه 256GB SSD کارتن اصلی</h5>
-                        <s> 29,400,000 تومان</s>
-                        <h4> 29,300,000 تومان</h4>
-                    </div>
-                    <a href="pages/det-product.html"> برای خرید کلیک کنید </a>
-                </div>
-            </div>
-        </div>
+        <partial name="TopProduct"  model = "@Model.tops"/>
     </div>
     <div class="more-information">
         <button id="default" class="tab-btn active" onclick="tabs(event,'html')">  نقد و بررسی </button>

@@ -4,6 +4,10 @@ namespace StoreUniversity.DTOs.Store
 {
     public class DetailsViewModel
     {
+        public DetailsViewModel()
+        {
+            tops = new List<IndexProductsViewModel>();
+        }
         [Display(Name = "تصویر محصول")]
         public string product_Image { get; set; }
         [Display(Name = "نام محصول")]
@@ -18,6 +22,7 @@ namespace StoreUniversity.DTOs.Store
 
         [Display(Name = "توضیحات")]
         public string Description { get; set; }
-        
+
+        public List< IndexProductsViewModel > tops { get; set; }
     }
 }

@@ -55,6 +55,7 @@ namespace StoreUniversity.Controllers
                 ProductName = p.Name,
                 product_Image = p.Image,
                 Description=p.Description,
+                tops= product.GetTopProducts()
             };
             return View(vm);
         }

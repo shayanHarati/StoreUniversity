@@ -1,0 +1,42 @@
+﻿@model List<IndexProductsViewModel>
+@foreach (var item in Model.DistinctBy(c => c.CategoryName))
+{
+    <div class="top-product">
+        <h3>پرفروش ترین  @item.CategoryName ها</h3>
+        <hr size="2px" color="red">
+        <div class="best-selling">
+            @foreach (var best in item.Top)
+            {
+                if (best.Category.Name == item.CategoryName)
+                {
+                    <div class="selling-item">
+                        <span> پیشنهادی </span>
+                        <div class="center-shop">
+                            <img src="/img/@best.Image" alt="">
+                            <h5>@best.Name</h5>
+
+                            @if (best.Offcodes[0].Offcode != null)
+                            {
+                                <s> @best.Price تومان</s>
+                                <h4> @Money.formatMoney(ApplyOff.Calculate(best.Price, best.Offcodes[0].Offcode.Percent))تومان</h4>
+                            }
+                            else
+                            {
+                                <h4> @best.Price تومان</h4>
+                            }
+
+
+
+                        </div>
+                        <a asp-action="Details" asp-controller="store" asp-route-id=@best.Id asp-route-cat="@best.Category.Name"> برای خرید کلیک کنید </a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="best-selling-ad">
+            <img src="/img/hedset-full.jpg" alt="" onclick="validate()">
+            <img src="/img/moble-ok.jpg" alt="" onclick="validate()">
+        </div>
+
+    </div>
+}
