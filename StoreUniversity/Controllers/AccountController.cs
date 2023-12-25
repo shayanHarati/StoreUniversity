@@ -9,14 +9,19 @@ using StoreUniversityModels.User;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using StoreUniversityModels.Product;
+using StoreUniversity.Services.ProductServices;
 namespace StoreUniversity.Controllers
 {
     public class AccountController : Controller
     {
         private IUser user;
-        public AccountController(IUser _user)
+        private Iproduct product;
+        public AccountController(IUser _user,Iproduct prod)
         {
             user=_user;
+            product=prod;
         }
         [Route("/register")]
         public IActionResult Register()
@@ -159,6 +164,25 @@ namespace StoreUniversity.Controllers
                 Id=us.Id
             };
             return RedirectToAction("Logout", ee);
+        }
+
+        [Authorize]
+        public IActionResult AddFavorit(int Id, string username)
+        {
+            var prod = product.GetproductById(Id);
+            product.CreateFavorits(Id, username);
+
+            var us = user.FindUser(username);
+            EditPanelViewModel em = new EditPanelViewModel()
+            {
+                Email = us.Email,
+                Id = us.Id,
+                ImageName = us.Image,
+                Password = us.Password,
+                UserName = us.UserName,
+                Products = product.GetFavorits()
+            };
+            return View("panel", em);
         }
     }
 }

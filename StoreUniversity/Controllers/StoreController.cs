@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using StoreUniversity.DTOs.Account;
 using StoreUniversity.DTOs.Store;
 using StoreUniversity.Services.CategoryServices;
 using StoreUniversity.Services.ProductServices;
+using StoreUniversity.Services.UserServices;
 using StoreUniversityModels.Product;
+using System.Reflection.Metadata.Ecma335;
 
 namespace StoreUniversity.Controllers
 {
@@ -11,10 +15,12 @@ namespace StoreUniversity.Controllers
         
         private Iproduct product;
         private ICategory Category;
-        public StoreController(Iproduct _product,ICategory _category)
+        private IUser user;
+        public StoreController(Iproduct _product,ICategory _category,IUser _user)
         {
             product = _product;
             Category = _category;
+            user = _user;
         }
         public IActionResult Show(string _Category)
         {
@@ -55,7 +61,9 @@ namespace StoreUniversity.Controllers
             }
             DetailsViewModel vm = new DetailsViewModel()
             {
+
                 Price = p.Price,
+                Id=p.Id,
                 percent = off,
                 ProductName = p.Name,
                 product_Image = images ,
@@ -64,6 +72,7 @@ namespace StoreUniversity.Controllers
             };
             return View(vm);
         }
+        
 
     }
 }

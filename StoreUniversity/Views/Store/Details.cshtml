@@ -54,8 +54,10 @@
                 <br>
                 <div class="set-product-button">
                     <span class="add-to-list">
-                        <i class="fa fa-heart"></i>
-                        افزودن به علاقه مندی
+                        <a asp-action="AddFavorit" asp-controller="Account" asp-route-Id="@Model.Id" asp-route-username="@User.Identity.Name">
+                            <i class="fa fa-heart"></i>
+                            افزودن به علاقه مندی
+                        </a>
                     </span>
                     <span class="product-sells">
                         <i class="fa fa-shopping-cart"></i>

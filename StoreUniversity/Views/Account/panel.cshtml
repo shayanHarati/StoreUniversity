@@ -79,13 +79,30 @@
             </div>
         </div>
         <div id="alaghemandi" class="tab-content" style="display:none;">
-            <div class="object comment">
-                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
-                <input type="text" placeholder="نام شما ">
-                <input type="email" placeholder="ایمیل">
-                <input type="number" min="1" max="5" value="5">
-                <button> ارسال نظر </button>
-            </div>
+            @foreach (var item in Model.Products)
+            {
+                <div class="selling-item">
+                    <span> علاقه مندی  </span>
+                    <div class="center-shop">
+                        @if (item.product.images.Count > 0)
+                        {
+                            <img src="/img/@item.product.images[0].ImageName" alt="">
+                        }
+                        <h5> @item.product.Name </h5>
+                        @if (item.product.Offcodes[0].Offcode != null)
+                        {
+                            <s> @item.product.Price تومان</s>
+                            <h4> @Money.formatMoney(ApplyOff.Calculate(item.product.Price, item.product.Offcodes[0].Offcode.Percent)) تومان</h4>
+                        }
+                        else
+                        {
+                            <h4> @item.product.Price تومان</h4>
+
+                        }
+                    </div>
+                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.product.Id" asp-route-cat="@item.product.Category.Name"> برای خرید کلیک کنید </a>
+                </div>
+            }
         </div>
     </div>
 </div>

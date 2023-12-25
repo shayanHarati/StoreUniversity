@@ -1,16 +1,35 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
 using StoreUniversity.DTOs.Store;
+using StoreUniversity.Services.UserServices;
 using StoreUniversityModels.Product;
+using StoreUniversityModels.User;
 
 namespace StoreUniversity.Services.ProductServices
 {
     public class ProductService : Iproduct
     {
+        private IUser user;
         private DB context;
-        public ProductService(DB _context)
+        public ProductService(DB _context,IUser _User)
         {
             context = _context;
+            user = _User;
+        }
+
+        public void CreateFavorits(int Id,string username)
+        {
+            int id = user.GetId(username);
+            User_Favorits fa = new User_Favorits()
+            {
+                ProductId=Id,
+                UserId=id
+            };
+            if (!context.Favorits.Any(c => c.ProductId == Id))
+            {
+                context.Favorits.Add(fa);
+            }
+            context.SaveChanges();
         }
 
         public List<Product> GetAllProducts()
@@ -35,6 +54,11 @@ namespace StoreUniversity.Services.ProductServices
             int max_sell=0;
             max_sell = context.Products.Select(c => c.SellRate).Max();
             return context.Products.Include(c=>c.images).Where(c => c.SellRate == max_sell).ToList()[0];
+        }
+
+        public List<User_Favorits> GetFavorits()
+        {
+            return context.Favorits.Include(c => c.User).Include(c => c.product).Include(c=>c.product.images).Include(c=>c.product.Offcodes).Include(c => c.product.Category).ToList();
         }
 
         public Product GetproductById(int id)

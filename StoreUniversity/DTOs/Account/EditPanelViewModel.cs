@@ -1,9 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StoreUniversityModels.Product;
+using StoreUniversityModels.User;
+using System.ComponentModel.DataAnnotations;
 
 namespace StoreUniversity.DTOs.Account
 {
     public class EditPanelViewModel
     {
+        public EditPanelViewModel()
+        {
+            Products = new List<User_Favorits>();
+        }
         [Required]
         public int Id { get; set; }
         [Display(Name = "نام کاربری")]
@@ -18,7 +24,7 @@ namespace StoreUniversity.DTOs.Account
         [EmailAddress(ErrorMessage = "{0} وارد شده معتبر نمی باشد")]
         public string Email { get; set; }
 
-
+        public List<User_Favorits> Products { get; set; }
         public IFormFile ImageFile { get; set; }
         public string ImageName { get; set; }
     }

@@ -8,6 +8,7 @@ namespace StoreUniversity.DTOs.Store
         {
             tops = new List<IndexProductsViewModel>();
         }
+        public int Id { get; set; }
         [Display(Name = "تصویر محصول")]
         public List<string> product_Image { get; set; }
         [Display(Name = "نام محصول")]
