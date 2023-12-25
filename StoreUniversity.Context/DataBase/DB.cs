@@ -26,6 +26,7 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<Category>  Categories { get; set; }
         public DbSet<Offcode> Offcodes { get; set; }
         public DbSet<ProductsTOOffcodes>  ProductsTOOffcodes { get; set; }
+        public DbSet<User_Favorits>  Favorits { get; set; }
 
 
         public DbSet<Wallet>  Wallets { get; set; }
@@ -86,6 +87,8 @@ namespace StoreUniversity.Context.DataBase
             modelBuilder.ApplyConfiguration(new OffCodeConfig());
             modelBuilder.ApplyConfiguration(new ProductsTOOffcodesConfig());
             modelBuilder.ApplyConfiguration(new ProductImageConfig());
+            modelBuilder.ApplyConfiguration(new User_FavoritsConfig());
+
 
             base.OnModelCreating(modelBuilder);
         }

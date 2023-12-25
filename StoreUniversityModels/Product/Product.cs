@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreUniversityModels.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace StoreUniversityModels.Product
         public virtual Category Category { get; set; }
         public virtual List<ProductImage> images { get; set; }
         public virtual List<ProductsTOOffcodes>  Offcodes { get; set; }
+        public virtual List<User_Favorits>  UserFavorits { get; set; }
         #endregion
     }
 }

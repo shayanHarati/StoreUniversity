@@ -22,6 +22,7 @@ namespace StoreUniversityModels.User
         #region Relations
         public List<User_Role>  Roles { get; set; }
         public virtual List<Wallet.Wallet>  Wallets { get; set; }
+        public virtual List<User_Favorits>  Favorits { get; set; }
         #endregion
     }
 }

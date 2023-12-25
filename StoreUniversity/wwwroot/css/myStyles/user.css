@@ -40,6 +40,10 @@
 }
 .imguser {
     padding: 10px;
+    height: 85px;
+    width: 90px;
+    border-radius: 50%;
+
 }
 .submitchange {
     margin-top: 30px;
