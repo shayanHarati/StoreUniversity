@@ -1,4 +1,5 @@
-﻿using StoreUniversity.DTOs.Store;
+﻿using StoreUniversity.DTOs.Account;
+using StoreUniversity.DTOs.Store;
 using StoreUniversityModels.Product;
 using StoreUniversityModels.User;
 
@@ -11,6 +12,9 @@ namespace StoreUniversity.Services.ProductServices
         List<Product> GetAllProducts();
         Product GetproductById(int id);
         void CreateFavorits(int Id,string username);
-        List<User_Favorits> GetFavorits();
+        float GetOff(int id);
+        string GetImage(int id);
+        string GetCategory(int id);
+        List< User_Favorits> GetFavorits();
     }
 }

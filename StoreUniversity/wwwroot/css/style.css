@@ -25,3 +25,8 @@
 body {
     background-color: #f9f9f9 ;
 }
+#alaghemandii
+{
+    display: flex !important;
+    gap: 20px;
+}

@@ -25,11 +25,12 @@ namespace StoreUniversity.Services.ProductServices
                 ProductId=Id,
                 UserId=id
             };
-            if (!context.Favorits.Any(c => c.ProductId == Id))
+            if (!context.Favorits.Any(c => c.UserId == id && c.ProductId==Id))
             {
                 context.Favorits.Add(fa);
+                context.SaveChanges();
             }
-            context.SaveChanges();
+            
         }
 
         public List<Product> GetAllProducts()
@@ -56,9 +57,36 @@ namespace StoreUniversity.Services.ProductServices
             return context.Products.Include(c=>c.images).Where(c => c.SellRate == max_sell).ToList()[0];
         }
 
+        public string GetCategory(int id)
+        {
+            var category = context.Products.Where(c => c.Id == id).Select(c => c.CategoryId);
+
+        }
+
         public List<User_Favorits> GetFavorits()
         {
-            return context.Favorits.Include(c => c.User).Include(c => c.product).Include(c=>c.product.images).Include(c=>c.product.Offcodes).Include(c => c.product.Category).ToList();
+           return context.Favorits.Include(c=>c.User).Include(c=>c.product).ToList();
+        }
+
+        public string GetImage(int id)
+        {
+            string img = context.ProductImage.Include(c => c.Product).Where(c => c.ProductId == id).Select(c=>c.ImageName).ToString();
+            return img;
+        }
+
+        public float GetOff(int id)
+        {
+            if(context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Any(c => c.ProductId == id))
+            {
+                float off = context.ProductsTOOffcodes.Include(c => c.Product).Include(c => c.Offcode).Where(c => c.ProductId == id).ToList().Select(c => c.Offcode).MaxBy(c => c.Percent).Percent;
+                return off;
+            }
+            else
+            {
+                float off = 0;
+                return off;
+            }
+           
         }
 
         public Product GetproductById(int id)

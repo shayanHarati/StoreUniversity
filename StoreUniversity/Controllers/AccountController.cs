@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using StoreUniversityModels.Product;
 using StoreUniversity.Services.ProductServices;
+using System.Linq;
 namespace StoreUniversity.Controllers
 {
     public class AccountController : Controller
@@ -105,14 +106,32 @@ namespace StoreUniversity.Controllers
         public IActionResult panel(string Username)
         {
             var us = user.FindUser(Username);
-
+            var fav=product.GetFavorits();
+            List<FavoritsInPanelViewModel> vms = new List<FavoritsInPanelViewModel>();
+            foreach (var item in fav)
+            {
+                var off = product.GetOff(item.product.Id);
+                var img = product.GetImage(item.product.Id);
+                FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                {
+                    Name=item.product.Name,
+                    Id=item.product.Id,
+                    Description=item.product.Description,
+                    Price=item.product.Price,
+                    Percent=off,
+                    Image = img
+                };
+                vms.Add(vm);
+            }
+            
             EditPanelViewModel nm = new EditPanelViewModel()
             {
                 UserName = us.UserName,
                 Password = us.Password,
                 Email = us.Email,
                 ImageName=us.Image,
-                Id = us.Id
+                Id = us.Id,
+                favorits = vms
             };
             
             return View(nm);
@@ -161,7 +180,7 @@ namespace StoreUniversity.Controllers
                 Password = us.Password,
                 Email = us.Email,
                 ImageName = _user.ImageName,
-                Id=us.Id
+                Id =us.Id
             };
             return RedirectToAction("Logout", ee);
         }
@@ -171,18 +190,35 @@ namespace StoreUniversity.Controllers
         {
             var prod = product.GetproductById(Id);
             product.CreateFavorits(Id, username);
-
             var us = user.FindUser(username);
-            EditPanelViewModel em = new EditPanelViewModel()
+            var fav = product.GetFavorits();
+            List<FavoritsInPanelViewModel> vms = new List<FavoritsInPanelViewModel>();
+            foreach (var item in fav)
             {
-                Email = us.Email,
-                Id = us.Id,
-                ImageName = us.Image,
-                Password = us.Password,
+                var off = product.GetOff(item.product.Id);
+                var img = product.GetImage(item.product.Id);
+                FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                {
+                    Name = item.product.Name,
+                    Id = item.product.Id,
+                    Description = item.product.Description,
+                    Price = item.product.Price,
+                    Percent = off,
+                    Image = img
+                };
+                vms.Add(vm);
+            }
+
+            EditPanelViewModel nm = new EditPanelViewModel()
+            {
                 UserName = us.UserName,
-                Products = product.GetFavorits()
+                Password = us.Password,
+                Email = us.Email,
+                ImageName = us.Image,
+                Id = us.Id,
+                favorits = vms
             };
-            return View("panel", em);
+            return View("panel", nm);
         }
     }
 }

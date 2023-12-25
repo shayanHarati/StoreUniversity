@@ -1,6 +1,4 @@
-﻿@section menu {
-    <partial name="menu" />
-}
+﻿
 @model ShowViewModel
  <div class="shop-header">
         <i class="fa fa-home shop-home-icon"></i>
@@ -52,7 +50,7 @@
                     }
                     else
                     {
-                        <h4> @item.Price تومان</h4>
+                        <h4> @Money.formatMoney(@item.Price) تومان</h4>
                         
                     }
                 </div>

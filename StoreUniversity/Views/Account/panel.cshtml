@@ -1,108 +1,110 @@
 ﻿@model EditPanelViewModel
 
 
-@section menu {
-    <partial name="menu" />
-}
 
-<div class="shop-header textinfo">
-    <div class="textname">
-        <img src="/img/users/@Model.ImageName" class="imguser">
 
-        <p class="textuser"><strong> سلام @User.Identity.Name عزیز ! </strong></p>
-    </div>
-    <ul class="liuser">
-        <li><button id="default" class="tabbtn active" onclick="tabss(event,'pishkhan')">پیشخوان</button>  </li>
-        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'virayesh')"> ویرایش اطلاعات </button></li>
-        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'sefaresh')"> سفارش ها </button> </li>
-        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'download')">  محصولات خریداری شده </button></li>
-        <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'alaghemandi')"> علاقه مندی ها </button></li>
-        <li><a asp-action="Logout" asp-controller="Account"  class="tabbtn" > خروج </a></li>
-    </ul>
-</div>
-<div class="shop-header textinfo">
-    <div class="content">
-        <div id="pishkhan" class="tab-content">
-            <div class="object">
-                <div>
-                    <span><b>نام کاربری : </b></span>
-                    <span>
-                        @Model.UserName
-                    </span>
-                </div>
-                <div>
-                    <span><b>ایمیل : </b></span>
-                    <span>
-                        @Model.Email
-                    </span>
-                </div>
-               
-
-            </div>
-        </div>
-        <div id="virayesh" class="tab-content" style="display:none;">
-            <form asp-action="EditInfo" asp-controller="Account" method="post"  enctype="multipart/form-data">
-                <div class="object focus-information">
-                    <input asp-for="Id" type="hidden" value="@Model.Id" />
-                    <p> نام کاربری : </p>
-                    <input type="text" asp-for="UserName" class="inputuser" value="@Model.UserName" />
-                    <p> رمز ورود : </p>
-                    <input asp-for="Password" value="@Model.Password" class="inputuser" type="password">
-                    <p> عکس : </p>
-                    @* class="inputuser" id="uploadpic"*@
-                    <input asp-for="ImageFile" type="file" accept=".jpg, .jpeg, .png">
-                    <span asp-validation-for="ImageFile"></span>
-                    <input type="hidden" asp-for="ImageName" />
-                    <p> ایمیل : </p>
-                    <input asp-for="Email" class="inputuser" value="@Model.Email" type="email">
-
-                </div>
-                <button type="submit" class="inputuser submitchange" asp-action="EditInfo" asp-controller="Account"> تایید </button>
-            </form>
-        </div>
-        <div id="sefaresh" class="tab-content" style="display:none;">
-            <div class="object comment">
-                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
-                <input type="text" placeholder="نام شما ">
-                <input type="email" placeholder="ایمیل">
-                <input type="number" min="1" max="5" value="5">
-                <button> ارسال نظر </button>
-            </div>
-        </div>
-        <div id="download" class="tab-content" style="display:none;">
-            <div class="object comment">
-                <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
-                <input type="text" placeholder="نام شما ">
-                <input type="email" placeholder="ایمیل">
-                <input type="number" min="1" max="5" value="5">
-                <button> ارسال نظر </button>
-            </div>
-        </div>
-        <div id="alaghemandi" class="tab-content" style="display:none;">
-            @foreach (var item in Model.Products)
+<div class="user">
+    <div class="shop-header textinfo">
+        <div class="textname">
+            @if (Model.ImageName == "user.png")
             {
-                <div class="selling-item">
-                    <span> علاقه مندی  </span>
-                    <div class="center-shop">
-                        @if (item.product.images.Count > 0)
-                        {
-                            <img src="/img/@item.product.images[0].ImageName" alt="">
-                        }
-                        <h5> @item.product.Name </h5>
-                        @if (item.product.Offcodes[0].Offcode != null)
-                        {
-                            <s> @item.product.Price تومان</s>
-                            <h4> @Money.formatMoney(ApplyOff.Calculate(item.product.Price, item.product.Offcodes[0].Offcode.Percent)) تومان</h4>
-                        }
-                        else
-                        {
-                            <h4> @item.product.Price تومان</h4>
-
-                        }
-                    </div>
-                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.product.Id" asp-route-cat="@item.product.Category.Name"> برای خرید کلیک کنید </a>
-                </div>
+                <img src="/img/user.png" class="imguser">
             }
+            else
+            {
+                <img src="/img/Users/@Model.ImageName" class="imguser">
+            }
+            
+
+            <p class="textuser"><strong> سلام @User.Identity.Name عزیز ! </strong></p>
+        </div>
+        <ul class="liuser">
+            <li><button id="default" class="tabbtn active" onclick="tabss(event,'pishkhan')">پیشخوان</button>  </li>
+            <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'virayesh')"> ویرایش اطلاعات </button></li>
+            <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'sefaresh')"> سفارش ها </button> </li>
+            <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'download')">  محصولات خریداری شده </button></li>
+            <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'alaghemandi')"> علاقه مندی ها </button></li>
+            <li><a asp-action="Logout" asp-controller="Account" class="tabbtn"> خروج </a></li>
+        </ul>
+    </div>
+    <div class="shop-header textinfo">
+        <div class="content">
+            <div id="pishkhan" class="tab-content">
+                <div class="object">
+                    <div>
+                        <span><b>نام کاربری : </b></span>
+                        <span>
+                            @Model.UserName
+                        </span>
+                    </div>
+                    <div>
+                        <span><b>ایمیل : </b></span>
+                        <span>
+                            @Model.Email
+                        </span>
+                    </div>
+
+
+                </div>
+            </div>
+            <div id="virayesh" class="tab-content" style="display:none;">
+                <form asp-action="EditInfo" asp-controller="Account" method="post" enctype="multipart/form-data">
+                    <div class="object focus-information">
+                        <input asp-for="Id" type="hidden" value="@Model.Id" />
+                        <p> نام کاربری : </p>
+                        <input type="text" asp-for="UserName" class="inputuser" value="@Model.UserName" />
+                        <p> رمز ورود : </p>
+                        <input asp-for="Password" value="@Model.Password" class="inputuser" type="password">
+                        <p> عکس : </p>
+                        @* class="inputuser" id="uploadpic"*@
+                        <input asp-for="ImageFile" type="file" accept=".jpg, .jpeg, .png">
+                        <span asp-validation-for="ImageFile"></span>
+                        <input type="hidden" asp-for="ImageName" />
+                        <p> ایمیل : </p>
+                        <input asp-for="Email" class="inputuser" value="@Model.Email" type="email">
+
+                    </div>
+                    <button type="submit" class="inputuser submitchange" asp-action="EditInfo" asp-controller="Account"> تایید </button>
+                </form>
+            </div>
+            <div id="sefaresh" class="tab-content" style="display:none;">
+                <div class="object comment">
+                    <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                    <input type="text" placeholder="نام شما ">
+                    <input type="email" placeholder="ایمیل">
+                    <input type="number" min="1" max="5" value="5">
+                    <button> ارسال نظر </button>
+                </div>
+            </div>
+            <div id="download" class="tab-content" style="display:none;">
+                <div class="object comment">
+                    <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
+                    <input type="text" placeholder="نام شما ">
+                    <input type="email" placeholder="ایمیل">
+                    <input type="number" min="1" max="5" value="5">
+                    <button> ارسال نظر </button>
+                </div>
+            </div>
+            <div id="alaghemandi" class="tab-content" style="display:none;">
+                <div id="alaghemandii">
+                    @foreach (var item in Model.favorits)
+                    {
+                        @if(item.Name==User.Identity.Name){
+                            <div class="sell-item">
+                                <span> علاقه مندی  </span>
+                                <div class="center-shop">
+                                    <img src="/img/@item.Image" alt="">
+                                    <h5> @item.Name </h5>
+                                    <s> @item.Price تومان</s>
+                                    <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Percent)) تومان</h4>
+                                </div>
+                                <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.Category.Name"> برای خرید کلیک کنید </a>
+                                <a asp-controller="Store" style="background-color:#ef4a23" asp-action="delete" asp-route-id="@item.Id" asp-route-username="@User.Identity.Name"> حذف محصول </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>

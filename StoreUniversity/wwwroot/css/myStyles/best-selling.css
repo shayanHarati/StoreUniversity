@@ -14,6 +14,16 @@
     grid-gap: 13px;
     margin-top: 15px;
 }
+.sell-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 20px #cecece;
+    display: grid;
+    grid-template-rows: 10% 63% 9% 9% auto;
+    grid-gap: 10px;
+    width: 50%;
+}
 .selling-item {
     background-color: #ffffff;
     border-radius: 10px;
@@ -22,6 +32,7 @@
     display: grid;
     grid-template-rows: 12% 77% auto;
 }
+.sell-item span,
 .selling-item span {
     background: #fdefeb;
     color: #ef603f;
@@ -30,6 +41,7 @@
     padding: 8px;
     text-align: center;
 }
+.sell-item a,
 .selling-item a {
     background: #2ecc71;
     color: #ffffff;
@@ -43,20 +55,24 @@
     display: grid;
     justify-items: center;
 }
-.center-shop img {
-    max-height: 158px;
-    max-height: 159px;
-    padding: 10px;
-}
+    .sell-item img,
+    .center-shop img {
+        max-height: 158px;
+        max-height: 159px;
+        padding: 10px;
+    }
+.sell-item h5,
 .selling-item h5 {
     text-align: center;
     font-size: 15px;
 }
+.sell-item s,
 .selling-item s {
     text-align: center;
     font-size: 16px;
     margin: 3px;
 }
+.sell-item h4,
 .selling-item h4 {
     text-align: center;
     font-size: 22px;

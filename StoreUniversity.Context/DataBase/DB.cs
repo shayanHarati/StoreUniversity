@@ -27,6 +27,7 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<Offcode> Offcodes { get; set; }
         public DbSet<ProductsTOOffcodes>  ProductsTOOffcodes { get; set; }
         public DbSet<User_Favorits>  Favorits { get; set; }
+        public DbSet<ProductImage> ProductImage { get; set; }
 
 
         public DbSet<Wallet>  Wallets { get; set; }

@@ -8,7 +8,7 @@ namespace StoreUniversity.DTOs.Account
     {
         public EditPanelViewModel()
         {
-            Products = new List<User_Favorits>();
+            favorits = new FavoritsInPanelViewModel();
         }
         [Required]
         public int Id { get; set; }
@@ -23,8 +23,7 @@ namespace StoreUniversity.DTOs.Account
         [Required(ErrorMessage = "لطفا {0} را وارد  کنید")]
         [EmailAddress(ErrorMessage = "{0} وارد شده معتبر نمی باشد")]
         public string Email { get; set; }
-
-        public List<User_Favorits> Products { get; set; }
+        public List<FavoritsInPanelViewModel> favorits { get; set; }
         public IFormFile ImageFile { get; set; }
         public string ImageName { get; set; }
     }

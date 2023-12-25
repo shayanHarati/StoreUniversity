@@ -6,13 +6,84 @@
     <partial name="Styles" />
 </head>
 <body>
-    <partial name="navbar"/>
-    @RenderSection("menu",false)
+    <div class=" top-header">
+        <div class="header">
+            <div class="site-info">
+                <img src="/img/pin.png">
+                <a class="topsite"> <h1> توانمندان فردا </h1> </a>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="جست و جو . . . ">
+                <i class=" fa fa-search top-search"></i>
+            </div>
+            <div class="menu-group">
+                <a asp-action="Cart" asp-controller="Store">
+                    <div class="shopimg-cart">
+                        <i class="fa fa-shopping-basket"></i>
+                        <span> سبد خرید </span>
+                    </div>
+                </a>
+                <div class="account">
+                    <details>
+                        <summary>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @User.Identity.Name
+                            }
+                            else
+                            {
+                                <img src="/img/user.png">
+                            }
+                        </summary>
+                        <div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>@User.Identity.Name</li>
+                                <li> <a asp-action="panel" asp-controller="Account" asp-route-Username="@User.Identity.Name"> پنل کاربری </a> </li>
+                                <li> <a asp-action="Logout" asp-controller="Account"> خروج از حساب کاربری  </a> </li>
+                            }
+                            else
+                            {
+                                <li> <a asp-action="Login" asp-controller="Account"> ورود </a> </li>
+                                <li> <a asp-action="Register" asp-controller="Account"> ثبت نام </a> </li>
+                            }
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <nav class="desktop-menu">
+            <li class="nav-li-selected"><a asp-action="index" asp-controller="home"> خانه </a></li>
+            <li class="nav-li-un-selected nav-li-hovered"><a asp-action="show" asp-controller="store">فروشگاه</a></li>
+            <li class="nav-li-un-selected nav-li-hovered"><a asp-action="call" asp-controller="home"> تماس با ما </a></li>
+            <li class="nav-li-un-selected nav-li-hovered"><a asp-controller="home" asp-action="About"> درباره ما </a></li>
+            <div class="nav-phone-number">
+                <span>021-91009194</span>
+                <img src="/img/phone.png">
+            </div>
+        </nav>
+        <nav class="mobile-menu">
+            <details>
+                <summary> <i class="fa fa-bars"></i> </summary>
+                <div>
+                    <li class="mobile-menu-item"><a asp-action="index" asp-controller="home"> خانه </a></li>
+                    <li class="mobile-menu-item"><a asp-action="show" asp-controller="store">فروشگاه </a></li>
+                    <li class="mobile-menu-item"><a asp-action="call" asp-controller="home"> تماس با ما </a></li>
+                    <li class="mobile-menu-item"><a asp-controller="home" asp-action="About"> درباره ما </a></li>
+                </div>
+            </details>
+        </nav>
+
+    </div>
+
     <div class="container">
         @RenderBody()
     </div>
    <partial name="Footer" />
    <partial name="Scripts" />
    @await RenderSectionAsync("Scripts", required: false)
+   @RenderSection("ScriptsSecond",false)
 </body>
 </html>
