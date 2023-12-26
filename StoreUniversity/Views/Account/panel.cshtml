@@ -89,19 +89,17 @@
                 <div id="alaghemandii">
                     @foreach (var item in Model.favorits)
                     {
-                        @if(item.Name==User.Identity.Name){
-                            <div class="sell-item">
-                                <span> علاقه مندی  </span>
-                                <div class="center-shop">
-                                    <img src="/img/@item.Image" alt="">
-                                    <h5> @item.Name </h5>
-                                    <s> @item.Price تومان</s>
-                                    <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Percent)) تومان</h4>
-                                </div>
-                                <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.Category.Name"> برای خرید کلیک کنید </a>
-                                <a asp-controller="Store" style="background-color:#ef4a23" asp-action="delete" asp-route-id="@item.Id" asp-route-username="@User.Identity.Name"> حذف محصول </a>
+                        <div class="sell-item">
+                            <span> علاقه مندی  </span>
+                            <div class="center-shop">
+                                <img src="/img/@item.Image" alt="">
+                                <h5> @item.Name </h5>
+                                <s> @item.Price تومان</s>
+                                <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Percent)) تومان</h4>
                             </div>
-                        }
+                            <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.CategoryName"> برای خرید کلیک کنید </a>
+                            <a asp-controller="Store" style="background-color:#ef4a23" asp-action="delete" asp-route-id="@item.Id" asp-route-username="@User.Identity.Name"> حذف محصول </a>
+                        </div>
                     }
                 </div>
             </div>

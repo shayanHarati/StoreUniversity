@@ -112,16 +112,29 @@ namespace StoreUniversity.Controllers
             {
                 var off = product.GetOff(item.product.Id);
                 var img = product.GetImage(item.product.Id);
-                FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                var Cat = product.GetCategory(item.product.Id);
+                var Is_Owner = product.IsOwner(us.Id, item.product.Id);
+                if (Is_Owner)
                 {
-                    Name=item.product.Name,
-                    Id=item.product.Id,
-                    Description=item.product.Description,
-                    Price=item.product.Price,
-                    Percent=off,
-                    Image = img
-                };
-                vms.Add(vm);
+                    FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                    {
+                        Name = item.product.Name,
+                        Id = item.product.Id,
+                        Description = item.product.Description,
+                        Price = item.product.Price,
+                        Percent = off,
+                        Image = img,
+                        CategoryName = Cat,
+
+
+                    };
+                    if (!vms.Any(c=>c.Name==vm.Name))
+                    {
+                        vms.Add(vm);
+                    }
+                    
+                }
+                
             }
             
             EditPanelViewModel nm = new EditPanelViewModel()
@@ -197,6 +210,7 @@ namespace StoreUniversity.Controllers
             {
                 var off = product.GetOff(item.product.Id);
                 var img = product.GetImage(item.product.Id);
+                var Cat = product.GetCategory(item.product.Id);
                 FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
                 {
                     Name = item.product.Name,
@@ -204,7 +218,8 @@ namespace StoreUniversity.Controllers
                     Description = item.product.Description,
                     Price = item.product.Price,
                     Percent = off,
-                    Image = img
+                    Image = img,
+                    CategoryName = Cat,
                 };
                 vms.Add(vm);
             }
@@ -216,7 +231,8 @@ namespace StoreUniversity.Controllers
                 Email = us.Email,
                 ImageName = us.Image,
                 Id = us.Id,
-                favorits = vms
+                favorits = vms,
+                
             };
             return View("panel", nm);
         }

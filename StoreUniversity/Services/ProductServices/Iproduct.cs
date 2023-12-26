@@ -15,6 +15,7 @@ namespace StoreUniversity.Services.ProductServices
         float GetOff(int id);
         string GetImage(int id);
         string GetCategory(int id);
+        bool IsOwner(int Userid, int ProductId);
         List< User_Favorits> GetFavorits();
     }
 }

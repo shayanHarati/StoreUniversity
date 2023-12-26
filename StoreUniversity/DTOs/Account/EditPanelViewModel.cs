@@ -8,7 +8,7 @@ namespace StoreUniversity.DTOs.Account
     {
         public EditPanelViewModel()
         {
-            favorits = new FavoritsInPanelViewModel();
+            favorits = new List<FavoritsInPanelViewModel>();
         }
         [Required]
         public int Id { get; set; }

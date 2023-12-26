@@ -59,8 +59,7 @@ namespace StoreUniversity.Services.ProductServices
 
         public string GetCategory(int id)
         {
-            var category = context.Products.Where(c => c.Id == id).Select(c => c.CategoryId);
-
+            return context.Products.Include(c=>c.Category).Single(c => c.Id == id).Category.Name;
         }
 
         public List<User_Favorits> GetFavorits()
@@ -87,6 +86,11 @@ namespace StoreUniversity.Services.ProductServices
                 return off;
             }
            
+        }
+
+        public bool IsOwner(int Userid,int ProductId)
+        {
+            return context.Favorits.Any(c => c.UserId == Userid && c.ProductId == ProductId);
         }
 
         public Product GetproductById(int id)
