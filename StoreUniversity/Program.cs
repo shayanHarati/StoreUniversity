@@ -17,7 +17,7 @@ builder.Services.AddTransient<IUser, UserService>();
 builder.Services.AddTransient<IUser_Role, User_RoleService>();
 builder.Services.AddTransient<Iproduct, ProductService>();
 builder.Services.AddTransient<ICategory, CategoryService>();
-
+builder.Services.AddTransient<IUserFavorite, UserFavorits>();
 
 builder.Services.AddAuthentication(options =>
 {

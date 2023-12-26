@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
 using StoreUniversity.DTOs.Store;
 using StoreUniversity.Services.UserServices;
@@ -17,21 +19,7 @@ namespace StoreUniversity.Services.ProductServices
             user = _User;
         }
 
-        public void CreateFavorits(int Id,string username)
-        {
-            int id = user.GetId(username);
-            User_Favorits fa = new User_Favorits()
-            {
-                ProductId=Id,
-                UserId=id
-            };
-            if (!context.Favorits.Any(c => c.UserId == id && c.ProductId==Id))
-            {
-                context.Favorits.Add(fa);
-                context.SaveChanges();
-            }
-            
-        }
+        
 
         public List<Product> GetAllProducts()
         {
@@ -69,8 +57,8 @@ namespace StoreUniversity.Services.ProductServices
 
         public string GetImage(int id)
         {
-            string img = context.ProductImage.Include(c => c.Product).Where(c => c.ProductId == id).Select(c=>c.ImageName).ToString();
-            return img;
+            var img = context.ProductImage.Include(c => c.Product).Where(c => c.ProductId == id).Select(c=>c.ImageName).ToList();
+            return img[0];
         }
 
         public float GetOff(int id)
@@ -131,6 +119,13 @@ namespace StoreUniversity.Services.ProductServices
 
 
             return vm;
+        }
+
+       
+
+        public Product GetById(int id)
+        {
+            return context.Products.SingleOrDefault(c => c.Id == id);
         }
     }
 }

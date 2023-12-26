@@ -74,6 +74,20 @@ namespace StoreUniversity.Context.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Offcodes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Develop",
+                            Percent = 30
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Electronic",
+                            Percent = 60
+                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.Product", b =>
@@ -105,6 +119,53 @@ namespace StoreUniversity.Context.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 1",
+                            Price = 12000000,
+                            SellRate = 80
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 2",
+                            Price = 12000000,
+                            SellRate = 20
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 3",
+                            Price = 12000000,
+                            SellRate = 11
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 4",
+                            Price = 12000000,
+                            SellRate = 10
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 5",
+                            Price = 12000000,
+                            SellRate = 10
+                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.ProductImage", b =>
@@ -127,6 +188,38 @@ namespace StoreUniversity.Context.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImage");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductImageId = 1,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            ProductImageId = 2,
+                            ImageName = "Meghdadit[dot]watchcom.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ProductImageId = 3,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ProductImageId = 4,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductImageId = 5,
+                            ImageName = "Meghdadit[dot]watchcom.jpg",
+                            ProductId = 5
+                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.ProductsTOOffcodes", b =>

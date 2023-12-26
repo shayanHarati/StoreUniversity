@@ -23,8 +23,15 @@
                 <img src="/img/@Model[0].Best.images[0].ImageName" alt="">
             }
             <h5> @Model[0].Best.Name</h5>
-            <s> @Model[0].Best.Price تومان</s>
-            <h4>  @Money.formatMoney(ApplyOff.Calculate(Model[0].Best.Price, Model[0].Best.Offcodes[0].Offcode.Percent)) تومان</h4>
+            @if (Model[0].Best.Offcodes[0].Offcode == null)
+            {
+                <h4> @Model[0].Best.Price تومان</h4>
+            }
+            else
+            {
+                <s> @Model[0].Best.Price تومان</s>
+                <h4>  @Money.formatMoney(ApplyOff.Calculate(Model[0].Best.Price, Model[0].Best.Offcodes[0].Offcode.Percent)) تومان</h4>
+            }
         </div>
         <a asp-action="Details" asp-controller="store" asp-route-id=@Model[0].Best.Id asp-route-cat="Model[0].Best.Category.Name"> برای خرید کلیک کنید </a>
     </div>

@@ -13,16 +13,19 @@ using Microsoft.AspNetCore.Authorization;
 using StoreUniversityModels.Product;
 using StoreUniversity.Services.ProductServices;
 using System.Linq;
+using StoreUniversity.Services;
 namespace StoreUniversity.Controllers
 {
     public class AccountController : Controller
     {
         private IUser user;
         private Iproduct product;
-        public AccountController(IUser _user,Iproduct prod)
+        private IUserFavorite favorit;
+        public AccountController(IUser _user,Iproduct prod,IUserFavorite _fa)
         {
             user=_user;
             product=prod;
+            favorit=_fa;
         }
         [Route("/register")]
         public IActionResult Register()
@@ -201,8 +204,24 @@ namespace StoreUniversity.Controllers
         [Authorize]
         public IActionResult AddFavorit(int Id, string username)
         {
-            var prod = product.GetproductById(Id);
-            product.CreateFavorits(Id, username);
+            
+            int id = user.GetId(username);
+            var state = product.GetById(Id);
+            if (state != null)
+            {
+               
+                var check = favorit.Check(id,Id);
+                if (check is null)
+                {
+                    var favo = new User_Favorits()
+                    {
+                        ProductId = Id,
+                        UserId = id
+                    };
+                    favorit.Insert(favo);
+
+                }
+            }
             var us = user.FindUser(username);
             var fav = product.GetFavorits();
             List<FavoritsInPanelViewModel> vms = new List<FavoritsInPanelViewModel>();
@@ -211,17 +230,27 @@ namespace StoreUniversity.Controllers
                 var off = product.GetOff(item.product.Id);
                 var img = product.GetImage(item.product.Id);
                 var Cat = product.GetCategory(item.product.Id);
-                FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                var Is_Owner = product.IsOwner(us.Id, item.product.Id);
+                if (Is_Owner)
                 {
-                    Name = item.product.Name,
-                    Id = item.product.Id,
-                    Description = item.product.Description,
-                    Price = item.product.Price,
-                    Percent = off,
-                    Image = img,
-                    CategoryName = Cat,
-                };
-                vms.Add(vm);
+                    FavoritsInPanelViewModel vm = new FavoritsInPanelViewModel()
+                    {
+                        Name = item.product.Name,
+                        Id = item.product.Id,
+                        Description = item.product.Description,
+                        Price = item.product.Price,
+                        Percent = off,
+                        Image = img,
+                        CategoryName = Cat,
+
+
+                    };
+                    if (!vms.Any(c => c.Name == vm.Name))
+                    {
+                        vms.Add(vm);
+                    }
+
+                }
             }
 
             EditPanelViewModel nm = new EditPanelViewModel()

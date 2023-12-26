@@ -12,8 +12,8 @@ using StoreUniversity.Context.DataBase;
 namespace StoreUniversity.Context.Migrations
 {
     [DbContext(typeof(DB))]
-    [Migration("20231225062438_mig-favorits")]
-    partial class migfavorits
+    [Migration("20231226085327_03")]
+    partial class _03
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,6 +108,53 @@ namespace StoreUniversity.Context.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 1",
+                            Price = 12000000,
+                            SellRate = 80
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 2",
+                            Price = 12000000,
+                            SellRate = 20
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 3",
+                            Price = 12000000,
+                            SellRate = 11
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 4",
+                            Price = 12000000,
+                            SellRate = 10
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            Description = "این محصول درجه یک است",
+                            Name = "محصول 5",
+                            Price = 12000000,
+                            SellRate = 10
+                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.ProductImage", b =>
@@ -130,6 +177,38 @@ namespace StoreUniversity.Context.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImage");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductImageId = 1,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            ProductImageId = 2,
+                            ImageName = "Meghdadit[dot]watchcom.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            ProductImageId = 3,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            ProductImageId = 4,
+                            ImageName = "Meghdadit[dot]com.jpg",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            ProductImageId = 5,
+                            ImageName = "Meghdadit[dot]watchcom.jpg",
+                            ProductId = 5
+                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.ProductsTOOffcodes", b =>

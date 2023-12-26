@@ -94,9 +94,17 @@
                             <div class="center-shop">
                                 <img src="/img/@item.Image" alt="">
                                 <h5> @item.Name </h5>
-                                <s> @item.Price تومان</s>
-                                <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Percent)) تومان</h4>
-                            </div>
+                                @if (item.Percent!=0)
+                                {
+                                    <s> @item.Price تومان</s>
+                                    <h4> @Money.formatMoney(ApplyOff.Calculate(item.Price, item.Percent)) تومان</h4>
+                                }
+                                else
+                                {
+                                    <h4> @item.Price تومان</h4>
+                                    
+                                    }
+                                </div>
                             <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.CategoryName"> برای خرید کلیک کنید </a>
                             <a asp-controller="Store" style="background-color:#ef4a23" asp-action="delete" asp-route-id="@item.Id" asp-route-username="@User.Identity.Name"> حذف محصول </a>
                         </div>

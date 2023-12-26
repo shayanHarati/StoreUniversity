@@ -11,11 +11,11 @@ namespace StoreUniversity.Services.ProductServices
         Product GetbestProduct();
         List<Product> GetAllProducts();
         Product GetproductById(int id);
-        void CreateFavorits(int Id,string username);
         float GetOff(int id);
         string GetImage(int id);
         string GetCategory(int id);
         bool IsOwner(int Userid, int ProductId);
+        Product GetById(int id);
         List< User_Favorits> GetFavorits();
     }
 }

@@ -12,74 +12,170 @@ using System.Threading.Tasks;
 
 namespace StoreUniversity.Context.DataBase
 {
-    public class DB:DbContext
+    public class DB : DbContext
     {
-        public DB(DbContextOptions<DB> options):base(options)
+        public DB(DbContextOptions<DB> options) : base(options)
         {
-            
+
         }
         #region Tables
-        public DbSet<User>  Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User_Role> UsersTORoles { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Category>  Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Offcode> Offcodes { get; set; }
-        public DbSet<ProductsTOOffcodes>  ProductsTOOffcodes { get; set; }
-        public DbSet<User_Favorits>  Favorits { get; set; }
+        public DbSet<ProductsTOOffcodes> ProductsTOOffcodes { get; set; }
+        public DbSet<User_Favorits> Favorits { get; set; }
         public DbSet<ProductImage> ProductImage { get; set; }
 
 
-        public DbSet<Wallet>  Wallets { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
         public DbSet<WalletType> WalletTypes { get; set; }
 
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>().HasData(
-                
+
                 new Role()
                 {
                     Id = 100,
-                    Name="Admin"
+                    Name = "Admin"
 
                 },
                 new Role()
                 {
-                    Id=101,
-                    Name="User"
+                    Id = 101,
+                    Name = "User"
                 }
                 );
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    Id=100,
-                    UserName="Admin",
-                    Password="Admin",
-                    Email="Admin@gmail.com",
-                    Image= "user.png"
+                    Id = 100,
+                    UserName = "Admin",
+                    Password = "Admin",
+                    Email = "Admin@gmail.com",
+                    Image = "user.png"
                 }
                 );
             modelBuilder.Entity<User_Role>().HasData(
                 new User_Role()
                 {
-                    Id=1,
-                    RoleId=100,
-                    UserId=100
+                    Id = 1,
+                    RoleId = 100,
+                    UserId = 100
                 }
                 );
             modelBuilder.Entity<Category>().HasData(
                 new Category()
                 {
-                    Id=1,
+                    Id = 1,
                     Name = "لب تاب"
                 },
                 new Category()
                 {
-                    Id=2,
-                    Name="ساعت"
+                    Id = 2,
+                    Name = "ساعت"
                 }
                 );
+            modelBuilder.Entity<Product>().HasData(
+
+                new Product()
+                {
+                    Id = 1,
+                    CategoryId = 1,
+                    Name = "محصول 1",
+                    Price = 12000000,
+                    SellRate = 80,
+                    Description = "این محصول درجه یک است"
+
+                },
+
+                new Product()
+                {
+                    Id = 2,
+                    CategoryId = 2,
+                    Name = "محصول 2",
+                    Price = 12000000,
+                    SellRate = 20,
+                    Description = "این محصول درجه یک است",
+                },
+                new Product()
+                {
+                    Id = 3,
+                    Name = "محصول 3",
+                    CategoryId = 1,
+                    SellRate = 11,
+                    Price = 12000000,
+                    Description = "این محصول درجه یک است"
+                },
+                new Product()
+                {
+                    Id = 4,
+                    Name = "محصول 4",
+                    CategoryId = 1,
+                    SellRate = 10,
+                    Price = 12000000,
+                    Description = "این محصول درجه یک است"
+                },
+                new Product()
+                {
+                    Id = 5,
+                    Name = "محصول 5",
+                    CategoryId = 2,
+                    SellRate = 10,
+                    Price = 12000000,
+                    Description = "این محصول درجه یک است"
+                }
+                );
+            modelBuilder.Entity<ProductImage>().HasData(
+                new ProductImage()
+                {
+                    ProductImageId = 1,
+                    ProductId = 1,
+                    ImageName = "Meghdadit[dot]com.jpg"
+                },
+                new ProductImage()
+                {
+                    ProductImageId = 2,
+                    ProductId = 2,
+                    ImageName = "Meghdadit[dot]watchcom.jpg"
+                },
+                new ProductImage()
+                {
+                    ProductImageId = 3,
+                    ProductId = 3,
+                    ImageName = "Meghdadit[dot]com.jpg"
+                }, new ProductImage()
+                {
+                    ProductImageId = 4,
+                    ProductId = 4,
+                    ImageName = "Meghdadit[dot]com.jpg"
+                },
+                new ProductImage()
+                {
+                    ProductImageId = 5,
+                    ProductId = 5,
+                    ImageName = "Meghdadit[dot]watchcom.jpg"
+                }
+
+                );
+            modelBuilder.Entity<Offcode>().HasData(
+                new Offcode()
+                {
+                    Id=1,
+                    Name = "Develop",
+                    Percent = 30
+                },
+                new Offcode()
+                {
+                    Id=2,
+                    Name = "Electronic",
+                    Percent = 60
+                });
+           
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
