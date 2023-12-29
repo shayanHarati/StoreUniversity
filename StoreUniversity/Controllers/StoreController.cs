@@ -36,10 +36,7 @@ namespace StoreUniversity.Controllers
             vm.SelectedCategory = _Category;
             return View(vm);
         }
-        public IActionResult Cart()
-        {
-            return View();
-        }
+        
         public IActionResult Details(int Id ,string cat)
         {
            

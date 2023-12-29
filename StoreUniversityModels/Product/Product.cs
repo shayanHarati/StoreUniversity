@@ -1,6 +1,8 @@
-﻿using StoreUniversityModels.User;
+﻿using Cart_Exam.Models;
+using StoreUniversityModels.User;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace StoreUniversityModels.Product
         public virtual List<ProductImage> images { get; set; }
         public virtual List<ProductsTOOffcodes>  Offcodes { get; set; }
         public virtual List<User_Favorits>  UserFavorits { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
         #endregion
     }
 }

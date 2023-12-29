@@ -60,8 +60,10 @@
                         </a>
                     </span>
                     <span class="product-sells">
-                        <i class="fa fa-shopping-cart"></i>
-                        افزودن به سبد خرید
+                        <a asp-action="AddToCart" asp-controller="Orders" asp-route-Id="@Model.Id">
+                            <i class="fa fa-shopping-cart"></i>
+                            افزودن به سبد خرید
+                       </a>
                     </span>
                 </div>
             </div>

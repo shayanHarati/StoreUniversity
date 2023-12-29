@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.DataBase;
 using StoreUniversity.Services;
+using StoreUniversity.Services.CartServices;
 using StoreUniversity.Services.CategoryServices;
 using StoreUniversity.Services.ProductServices;
 using StoreUniversity.Services.RoleServices;
@@ -18,6 +19,8 @@ builder.Services.AddTransient<IUser_Role, User_RoleService>();
 builder.Services.AddTransient<Iproduct, ProductService>();
 builder.Services.AddTransient<ICategory, CategoryService>();
 builder.Services.AddTransient<IUserFavorite, UserFavorits>();
+builder.Services.AddTransient<ICart, CartService>();
+
 
 builder.Services.AddAuthentication(options =>
 {

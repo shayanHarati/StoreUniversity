@@ -22,6 +22,61 @@ namespace StoreUniversity.Context.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Cart_Exam.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsFinaly")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Sum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("orders");
+                });
+
+            modelBuilder.Entity("Cart_Exam.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailID"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailID");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("orderDetails");
+                });
+
             modelBuilder.Entity("StoreUniversityModels.Product.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -301,16 +356,6 @@ namespace StoreUniversity.Context.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 100,
-                            Email = "Admin@gmail.com",
-                            Image = "user.png",
-                            Password = "Admin",
-                            UserName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.User.UserRelations.User_Role", b =>
@@ -334,14 +379,6 @@ namespace StoreUniversity.Context.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersTORoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            RoleId = 100,
-                            UserId = 100
-                        });
                 });
 
             modelBuilder.Entity("StoreUniversityModels.User.User_Favorits", b =>
@@ -367,56 +404,23 @@ namespace StoreUniversity.Context.Migrations
                     b.ToTable("Favorits");
                 });
 
-            modelBuilder.Entity("StoreUniversityModels.Wallet.Wallet", b =>
+            modelBuilder.Entity("Cart_Exam.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("WalletId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cart_Exam.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletId"));
+                    b.HasOne("StoreUniversityModels.Product.Product", "Product")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Navigation("Order");
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsPay")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("WalletId");
-
-                    b.HasIndex("TypeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Wallets");
-                });
-
-            modelBuilder.Entity("StoreUniversityModels.Wallet.WalletType", b =>
-                {
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TypeTitle")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.HasKey("TypeId");
-
-                    b.ToTable("WalletTypes");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.Product", b =>
@@ -498,23 +502,9 @@ namespace StoreUniversity.Context.Migrations
                     b.Navigation("product");
                 });
 
-            modelBuilder.Entity("StoreUniversityModels.Wallet.Wallet", b =>
+            modelBuilder.Entity("Cart_Exam.Models.Order", b =>
                 {
-                    b.HasOne("StoreUniversityModels.Wallet.WalletType", "Type")
-                        .WithMany("Wallets")
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("StoreUniversityModels.User.User", "user")
-                        .WithMany("Wallets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Type");
-
-                    b.Navigation("user");
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("StoreUniversityModels.Product.Category", b =>
@@ -531,6 +521,8 @@ namespace StoreUniversity.Context.Migrations
                 {
                     b.Navigation("Offcodes");
 
+                    b.Navigation("OrderDetails");
+
                     b.Navigation("UserFavorits");
 
                     b.Navigation("images");
@@ -546,13 +538,6 @@ namespace StoreUniversity.Context.Migrations
                     b.Navigation("Favorits");
 
                     b.Navigation("Roles");
-
-                    b.Navigation("Wallets");
-                });
-
-            modelBuilder.Entity("StoreUniversityModels.Wallet.WalletType", b =>
-                {
-                    b.Navigation("Wallets");
                 });
 #pragma warning restore 612, 618
         }

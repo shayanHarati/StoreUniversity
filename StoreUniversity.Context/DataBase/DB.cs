@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cart_Exam.Models;
+using Microsoft.EntityFrameworkCore;
 using StoreUniversity.Context.Configuration;
 using StoreUniversityModels.Product;
 using StoreUniversityModels.User;
 using StoreUniversityModels.User.UserRelations;
-using StoreUniversityModels.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +30,8 @@ namespace StoreUniversity.Context.DataBase
         public DbSet<ProductImage> ProductImage { get; set; }
 
 
-        public DbSet<Wallet> Wallets { get; set; }
-        public DbSet<WalletType> WalletTypes { get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<OrderDetail> orderDetails { get; set; }
 
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,24 +48,6 @@ namespace StoreUniversity.Context.DataBase
                 {
                     Id = 101,
                     Name = "User"
-                }
-                );
-            modelBuilder.Entity<User>().HasData(
-                new User()
-                {
-                    Id = 100,
-                    UserName = "Admin",
-                    Password = "Admin",
-                    Email = "Admin@gmail.com",
-                    Image = "user.png"
-                }
-                );
-            modelBuilder.Entity<User_Role>().HasData(
-                new User_Role()
-                {
-                    Id = 1,
-                    RoleId = 100,
-                    UserId = 100
                 }
                 );
             modelBuilder.Entity<Category>().HasData(
@@ -89,8 +71,9 @@ namespace StoreUniversity.Context.DataBase
                     Name = "محصول 1",
                     Price = 12000000,
                     SellRate = 80,
-                    Description = "این محصول درجه یک است"
+                    Description = "این محصول درجه یک است",
 
+                    
                 },
 
                 new Product()

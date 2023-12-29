@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StoreUniversity.Context.Migrations
 {
     /// <inheritdoc />
-    public partial class _01 : Migration
+    public partial class final1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,6 +42,22 @@ namespace StoreUniversity.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "orders",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Sum = table.Column<int>(type: "int", nullable: false),
+                    IsFinaly = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_orders", x => x.OrderId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -68,18 +84,6 @@ namespace StoreUniversity.Context.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WalletTypes",
-                columns: table => new
-                {
-                    TypeId = table.Column<int>(type: "int", nullable: false),
-                    TypeTitle = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WalletTypes", x => x.TypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,36 +136,6 @@ namespace StoreUniversity.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Wallets",
-                columns: table => new
-                {
-                    WalletId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IsPay = table.Column<bool>(type: "bit", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Wallets", x => x.WalletId);
-                    table.ForeignKey(
-                        name: "FK_Wallets_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Wallets_WalletTypes_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "WalletTypes",
-                        principalColumn: "TypeId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Favorits",
                 columns: table => new
                 {
@@ -184,6 +158,34 @@ namespace StoreUniversity.Context.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "orderDetails",
+                columns: table => new
+                {
+                    OrderDetailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_orderDetails", x => x.OrderDetailID);
+                    table.ForeignKey(
+                        name: "FK_orderDetails_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_orderDetails_orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "orders",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -243,6 +245,15 @@ namespace StoreUniversity.Context.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Offcodes",
+                columns: new[] { "Id", "Name", "Percent" },
+                values: new object[,]
+                {
+                    { 1, "Develop", 30 },
+                    { 2, "Electronic", 60 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -252,14 +263,28 @@ namespace StoreUniversity.Context.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Email", "Image", "Password", "UserName" },
-                values: new object[] { 100, "Admin@gmail.com", "user.png", "Admin", "Admin" });
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Description", "Name", "Price", "SellRate" },
+                values: new object[,]
+                {
+                    { 1, 1, "این محصول درجه یک است", "محصول 1", 12000000, 80 },
+                    { 2, 2, "این محصول درجه یک است", "محصول 2", 12000000, 20 },
+                    { 3, 1, "این محصول درجه یک است", "محصول 3", 12000000, 11 },
+                    { 4, 1, "این محصول درجه یک است", "محصول 4", 12000000, 10 },
+                    { 5, 2, "این محصول درجه یک است", "محصول 5", 12000000, 10 }
+                });
 
             migrationBuilder.InsertData(
-                table: "UsersTORoles",
-                columns: new[] { "Id", "RoleId", "UserId" },
-                values: new object[] { 1, 100, 100 });
+                table: "ProductImage",
+                columns: new[] { "ProductImageId", "ImageName", "ProductId" },
+                values: new object[,]
+                {
+                    { 1, "Meghdadit[dot]com.jpg", 1 },
+                    { 2, "Meghdadit[dot]watchcom.jpg", 2 },
+                    { 3, "Meghdadit[dot]com.jpg", 3 },
+                    { 4, "Meghdadit[dot]com.jpg", 4 },
+                    { 5, "Meghdadit[dot]watchcom.jpg", 5 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Favorits_ProductId",
@@ -270,6 +295,16 @@ namespace StoreUniversity.Context.Migrations
                 name: "IX_Favorits_UserId",
                 table: "Favorits",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_orderDetails_OrderId",
+                table: "orderDetails",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_orderDetails_ProductId",
+                table: "orderDetails",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImage_ProductId",
@@ -300,16 +335,6 @@ namespace StoreUniversity.Context.Migrations
                 name: "IX_UsersTORoles_UserId",
                 table: "UsersTORoles",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Wallets_TypeId",
-                table: "Wallets",
-                column: "TypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Wallets_UserId",
-                table: "Wallets",
-                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -317,6 +342,9 @@ namespace StoreUniversity.Context.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Favorits");
+
+            migrationBuilder.DropTable(
+                name: "orderDetails");
 
             migrationBuilder.DropTable(
                 name: "ProductImage");
@@ -328,7 +356,7 @@ namespace StoreUniversity.Context.Migrations
                 name: "UsersTORoles");
 
             migrationBuilder.DropTable(
-                name: "Wallets");
+                name: "orders");
 
             migrationBuilder.DropTable(
                 name: "Offcodes");
@@ -341,9 +369,6 @@ namespace StoreUniversity.Context.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "WalletTypes");
 
             migrationBuilder.DropTable(
                 name: "Categories");
