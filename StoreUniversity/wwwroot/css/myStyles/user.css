@@ -16,7 +16,7 @@
 }
 #tab-bbtn {
     display: grid;
-    grid-template-columns: 61% 33% 33%;
+    grid-template-columns: 113% 33% 33%;
 }
 .liuser {
     margin-top: 40px;
