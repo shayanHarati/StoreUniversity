@@ -55,11 +55,12 @@
                         <input type="text" asp-for="UserName" class="inputuser" value="@Model.UserName" />
                         <p> رمز ورود : </p>
                         <input asp-for="Password" value="@Model.Password" class="inputuser" type="password">
+                        <span asp-validation-for="Password"></span>
                         <p> عکس : </p>
                         @* class="inputuser" id="uploadpic"*@
                         <input asp-for="ImageFile" type="file" accept=".jpg, .jpeg, .png">
                         <span asp-validation-for="ImageFile"></span>
-                        <input type="hidden" asp-for="ImageName" />
+                        <input type="hidden" asp-for="ImageName"/>
                         <p> ایمیل : </p>
                         <input asp-for="Email" class="inputuser" value="@Model.Email" type="email">
 

@@ -155,7 +155,8 @@ namespace StoreUniversity.Controllers
         [HttpPost]
         public IActionResult EditInfo(EditPanelViewModel _user)
         {
-            if (!ModelState.IsValid)
+            
+            if (!ModelState.IsValid )
             {
                 return View("panel", _user);
             }
@@ -167,7 +168,8 @@ namespace StoreUniversity.Controllers
                 Id = _user.Id
 
             };
-            if (_user.ImageFile != null)
+            
+                if (_user.ImageFile != null)
             {
                 
                 if(_user.ImageName != "user.png")
@@ -178,24 +180,29 @@ namespace StoreUniversity.Controllers
                         System.IO.File.Delete(deletepath);
                     }
                 }
-                us.Image = _user.UserName + Path.GetExtension(_user.ImageFile.FileName);
-                string image_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Users",us.Image);
+                us.Image = Fix.Normalize_1d(_user.UserName) + Path.GetExtension(_user.ImageFile.FileName); 
+                string image_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Users", us.Image);
                 using (var stream = new FileStream(image_path, FileMode.Create))
                 {
-                     _user.ImageFile.CopyTo(stream);
+                    _user.ImageFile.CopyTo(stream);
                 }
 
-
             }
-           
+            else
+            {
+                us.Image = _user.ImageName;
+            }
             user.UpdateUser(us);
+
+
+
 
             EditPanelViewModel ee = new EditPanelViewModel()
             {
                 UserName = us.UserName,
                 Password = us.Password,
                 Email = us.Email,
-                ImageName = _user.ImageName,
+                ImageName = Fix.Normalize_1d( _user.ImageName),
                 Id =us.Id
             };
             return RedirectToAction("Logout", ee);
@@ -258,7 +265,7 @@ namespace StoreUniversity.Controllers
                 UserName = us.UserName,
                 Password = us.Password,
                 Email = us.Email,
-                ImageName = us.Image,
+                ImageName = Fix.Normalize_1d(us.Image),
                 Id = us.Id,
                 favorits = vms,
                 

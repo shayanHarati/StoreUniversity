@@ -24,7 +24,7 @@ namespace StoreUniversity.DTOs.Account
         [EmailAddress(ErrorMessage = "{0} وارد شده معتبر نمی باشد")]
         public string Email { get; set; }
         public List<FavoritsInPanelViewModel> favorits { get; set; }
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
         public string ImageName { get; set; }
     }
 }
