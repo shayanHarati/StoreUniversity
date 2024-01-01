@@ -51,8 +51,10 @@
                 <form asp-action="EditInfo" asp-controller="Account" method="post" enctype="multipart/form-data">
                     <div class="object focus-information">
                         <input asp-for="Id" type="hidden" value="@Model.Id" />
+                        
                         <p> نام کاربری : </p>
                         <input type="text" asp-for="UserName" class="inputuser" value="@Model.UserName" />
+                        <span asp-validation-for="UserName"></span>
                         <p> رمز ورود : </p>
                         <input asp-for="Password" value="@Model.Password" class="inputuser" type="password">
                         <span asp-validation-for="Password"></span>
@@ -63,7 +65,7 @@
                         <input type="hidden" asp-for="ImageName"/>
                         <p> ایمیل : </p>
                         <input asp-for="Email" class="inputuser" value="@Model.Email" type="email">
-
+                        <span asp-validation-for="Email"></span>
                     </div>
                     <button type="submit" class="inputuser submitchange" asp-action="EditInfo" asp-controller="Account"> تایید </button>
                 </form>
@@ -107,7 +109,7 @@
                                     }
                                 </div>
                             <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Id" asp-route-cat="@item.CategoryName"> برای خرید کلیک کنید </a>
-                            <a asp-controller="Store" style="background-color:#ef4a23" asp-action="delete" asp-route-id="@item.Id" asp-route-username="@User.Identity.Name"> حذف محصول </a>
+                            
                         </div>
                     }
                 </div>
