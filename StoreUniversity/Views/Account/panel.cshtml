@@ -21,7 +21,6 @@
         <ul class="liuser">
             <li><button id="default" class="tabbtn active" onclick="tabss(event,'pishkhan')">پیشخوان</button>  </li>
             <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'virayesh')"> ویرایش اطلاعات </button></li>
-            <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'sefaresh')"> سفارش ها </button> </li>
             <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'download')">  محصولات خریداری شده </button></li>
             <li><button id="tab-bbtn" class="tabbtn" onclick="tabss(event,'alaghemandi')"> علاقه مندی ها </button></li>
             <li><a asp-action="Logout" asp-controller="Account" class="tabbtn"> خروج </a></li>
@@ -70,23 +69,8 @@
                     <button type="submit" class="inputuser submitchange" asp-action="EditInfo" asp-controller="Account"> تایید </button>
                 </form>
             </div>
-            <div id="sefaresh" class="tab-content" style="display:none;">
-                <div class="object comment">
-                    <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
-                    <input type="text" placeholder="نام شما ">
-                    <input type="email" placeholder="ایمیل">
-                    <input type="number" min="1" max="5" value="5">
-                    <button> ارسال نظر </button>
-                </div>
-            </div>
             <div id="download" class="tab-content" style="display:none;">
-                <div class="object comment">
-                    <textarea rows="10" placeholder=" نظر شما !!! "></textarea>
-                    <input type="text" placeholder="نام شما ">
-                    <input type="email" placeholder="ایمیل">
-                    <input type="number" min="1" max="5" value="5">
-                    <button> ارسال نظر </button>
-                </div>
+                
             </div>
             <div id="alaghemandi" class="tab-content" style="display:none;">
                 <div id="alaghemandii">

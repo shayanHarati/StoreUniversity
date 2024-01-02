@@ -1,14 +1,20 @@
 ﻿@model List<ShowOrderViewModel>
+@{
+    int counter = 0;
+}
 <div class="cart">
 
     <div class="shop-header textinfo myitem item1">
         <p class="cartpay"><strong> سبد خرید  </strong></p>
         @if (Model !=null )
         {
+           
             @foreach (var item in Model)
             {
+                counter++;
                 <div class="cart-item">
-                    <span> @item.OrderDetailId  </span>
+                    <span> @counter  </span>
+                    
                     <div class="center-shop">
                         <img src="/img/@item.ImageName" alt="">
                     </div>
@@ -25,7 +31,7 @@
                         <h4> @Money.formatMoney(@item.Price) تومان</h4>
                     </div>
                     <div class="center-shop">
-                        <a asp-action="Delete" asp-controller="Orders" asp-route-id="@item.OrderDetailId">حذف</a>
+                        <a class="peyment del" asp-action="Delete" asp-controller="Orders" asp-route-id="@item.OrderDetailId">حذف</a>
                     </div>
 
 
